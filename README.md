@@ -4,10 +4,14 @@
 * [Technologies](#technologies)
 * [Contents](#content)
 
+<<<<<<< HEAD
 
 Name: Amir Armion
 File: index.html
 
+=======
+Team Member: John Braithwaite
+>>>>>>> 19cf2f2d0fb7286c898fa678abe8c2f4de360ac2
 Name: Steven Cho
 File: main.html
 
@@ -29,6 +33,8 @@ Content of the project folder:
  Top level of project folder: 
 ├── .gitignore               # Git ignore file
 ├── index.html               # landing HTML file, this is what users see when you come to url
+|-- profile.html             # what people see when they click on 
+settings
 └── README.md
 
 It has the following subfolders and files:
