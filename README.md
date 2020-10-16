@@ -4,8 +4,13 @@
 * [Technologies](#technologies)
 * [Contents](#content)
 
+
+Name: Amir Armion
+File: index.html
+
 Name: Steven Cho
 File: main.html
+
 
 ## General Info
 This browser based web application to ...
