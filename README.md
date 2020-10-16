@@ -4,6 +4,9 @@
 * [Technologies](#technologies)
 * [Contents](#content)
 
+Name: Steven Cho
+File: main.html
+
 ## General Info
 This browser based web application to ...
 	
