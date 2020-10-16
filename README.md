@@ -5,6 +5,8 @@
 * [Contents](#content)
 
 Team Member: John Braithwaite
+Name: Steven Cho
+File: main.html
 
 ## General Info
 This browser based web application to ...
