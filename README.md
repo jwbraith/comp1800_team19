@@ -9,6 +9,7 @@ Name: Amir Armion
 File: index.html
 
 Team Member: John Braithwaite
+
 Name: Steven Cho
 File: main.html
 
