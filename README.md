@@ -4,14 +4,11 @@
 * [Technologies](#technologies)
 * [Contents](#content)
 
-<<<<<<< HEAD
 
 Name: Amir Armion
 File: index.html
 
-=======
 Team Member: John Braithwaite
->>>>>>> 19cf2f2d0fb7286c898fa678abe8c2f4de360ac2
 Name: Steven Cho
 File: main.html
 
