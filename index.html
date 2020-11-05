@@ -2,74 +2,64 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>My BCIT Project</title>
-    <meta name="comp1800 boilerplate code" content="my bcit project">
-    <meta name="author" content="BCIT">
+  <meta charset="utf-8">
+  <title>My BCIT Project</title>
+  <meta name="comp1800 boilerplate code" content="my bcit project">
+  <meta name="author" content="BCIT">
 
-    <!-- Bootstrap for Mobile-first, and JQuery -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Bootstrap for Mobile-first, and JQuery -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-     <!-- Firebase CSS for Authentication UI     -->
-     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+  <!-- Firebase CSS for Authentication UI     -->
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
 
-     <!-- Optional CSS of your own               -->
-     <link type="text/css" rel="stylesheet" href="styles/app.css" />
-    
+  <!-- Optional CSS of your own               -->
+  <link rel="stylesheet" href="styles/app.css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+  </style>
+
 </head>
 
-<body>
+<body class="index-bg">
 
-    <!-------------------------------------->
-    <!-- The following is HTML for layout -->
-    <!-------------------------------------->
-    <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="">Trivia Game</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">my data</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.html">my profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.html">login/signup</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+  <div class="index-logo">
+    <img src="images/logo.png" alt="logo">
+  </div>
+  <div class="index-options">
+    <div><a type="button" href="#" class="anon-btn">Play As Anonymous!</a></div>
+    <div><a type="button" class="login-btn" href="login.html">Login</a></div>
+    <a href = "#">Sign Up</a>
+  </div>
 
-    <!----------------------------------------------->
-    <!-- JS: Boostrap, Firebase, API related    -->
-    <!----------------------------------------------->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+  <!----------------------------------------------->
+  <!-- JS: Boostrap, Firebase, API related    -->
+  <!----------------------------------------------->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
 
-    <!-- Firebase libraries from CDN -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
-    
-    <!-- Your own Firebase API key information -->
-    <script src="scripts/firebase_api_team19.js"> </script>
+  <!-- Firebase libraries from CDN -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
 
-    <!-- Your own JavaScript functions included here    -->
-    <script src="scripts/app.js"> </script>
+  <!-- Your own Firebase API key information -->
+  <script src="scripts/firebase_api_team19.js"> </script>
+
+  <!-- Your own JavaScript functions included here    -->
+  <script src="scripts/app.js"> </script>
 
 
 </body>
+
 </html>

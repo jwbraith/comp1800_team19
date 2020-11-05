@@ -1,1 +1,60 @@
+* {
+  font-family: 'Righteous', cursive;
 
+}
+
+body {
+  background: url("../images/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.index-options {
+  text-align: center;
+
+}
+
+.index-logo {
+  text-align: center;
+  margin-top: 200px;
+}
+
+.index-logo > img{
+  width: 300px;
+  margin-bottom: 30px;
+}
+
+.index-options > div {
+  padding-top: 0px;
+  padding-bottom: 10px;
+}
+
+
+
+.anon-btn {
+  background-color: rgb(75, 75, 75);
+  color: white;
+  padding: 15px;
+  border-radius: 3%;
+}
+
+.login-btn {
+  background-color: rgb(75, 75, 75);
+  color: white;
+  padding: 15px;
+  border-radius: 3%;
+}
+
+
+
+.index-options > a{
+  padding-top: 20px;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
