@@ -1,7 +1,7 @@
 * {
   font-family: 'Righteous', cursive;
-
 }
+
 
 body {
   background: url("../images/background.jpg") no-repeat center center fixed;
@@ -9,12 +9,11 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
 }
 
 .index-options {
   text-align: center;
-
+  padding: 40px;
 }
 
 .index-logo {
@@ -31,8 +30,6 @@ body {
   padding-top: 0px;
   padding-bottom: 10px;
 }
-
-
 
 .anon-btn {
   background-color: rgb(75, 75, 75);
@@ -57,4 +54,50 @@ body {
 a:hover {
   color: white;
   text-decoration: none;
+}
+
+.profile-picture {
+  border-radius: 50%;
+}
+
+.main-profile {
+  text-align: center;
+  margin-top: 15vh;
+}
+
+.game-body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+
+}
+
+#questions-container {
+  width: 800px;
+  max-width: 80%;
+  background-color: rgb(233, 233, 233);
+  border-radius: 5px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 15%;
+  padding: 30px;
+  box-shadow: 0 0 10px 2px;
+  font-size: 20px;
+}
+
+.btn-grid {
+  padding-top: 40px;
+  display: grid;
+  grid-gap: 10px;
+}
+
+.btn {
+  border: 1px solid rgb(180, 180, 180);
+  box-shadow: 0 0 3px 1px;
+}
+
+.btn:hover {
+  background-color: rgb(218, 218, 218);
+  border: 1px solid rgb(75, 75, 75);
 }
