@@ -23,15 +23,42 @@
 
 </head>
 
-<body class="index-bg">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="index.html">Trivia Game</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="login.html">my data</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="profile.html">my profile</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="login.html">login/signup</a>
+          </li>
+      </ul>
+  </div>
+</nav>
 
-  <div class="index-logo">
-    <img src="images/logo.png" alt="logo">
+<body class="game-body">
+  <div class="game-container">
+    <div id="questions-container">
+      <div id="questions">
+        <!--Will have to use js to update this number everytime a question is asked-->
+        Question Number: 1 
+      </div>
+      <div id="answer-btn" class="btn-grid">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
+    </div>
   </div>
-  <div class="index-options">
-    <div><a type="button" href="main.html" class="anon-btn">Play As Anonymous!</a></div>
-    <div><a type="button" class="login-btn" href="login.html">Login or Sign up</a></div>
-  </div>
+
 
   <!----------------------------------------------->
   <!-- JS: Boostrap, Firebase, API related    -->
