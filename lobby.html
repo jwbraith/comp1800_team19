@@ -33,13 +33,14 @@
 
       div {
         font-size: 18pt;
+        border-radius: 10px;
       }
       #optionsGrid {
         margin: auto;
         margin-top: 5vh;
         display: grid;
         grid-template-columns: 100%;
-        grid-template-rows: 25% 25% 25% 25%;
+        grid-template-rows: repeat(4, 4fr);
         align-items: center;
         justify-items: center;
         background-color: blue;
@@ -52,12 +53,13 @@
         margin-top: 5vh;
         display: grid;
         grid-template-columns: 20% 80%;
-        grid-template-rows: 25% 25% 25% 25%;
+        grid-template-rows: repeat(4, 4fr);
         align-items: center;
         justify-items: center;
         background-color: blue;
         height: 40vh;
         width: 80vw;
+        color: white;
       }
 
       .playerIcon {
@@ -66,8 +68,9 @@
         border-radius: 50%;
         background-color: red;
       }
-
-      .playerName {
+      
+      .dropdown {
+        width: 80%;
       }
 
       #playerCount {
@@ -84,7 +87,7 @@
     <!-------------------------------------->
     <!-- Header Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="">Trivia Game</a>
+      <a class="navbar-brand" href="">Huddle</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -105,9 +108,9 @@
 
     <div id="optionsGrid">
       <div id="topicDrop" class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Topic
+        <button id="topic" class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">Topic
           <span class="caret"></span></button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu dropdown-menu-right">
           <li><a href="#">Geography</a></li>
           <li><a href="#">History</a></li>
           <li><a href="#">Language</a></li>
@@ -115,7 +118,7 @@
 
       </div>
       <div id="diffDrop" class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Difficulty
+        <button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">Difficulty
           <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li><a href="#">Easy</a></li>
@@ -124,7 +127,7 @@
         </ul>
       </div>
       <div id="numQuestions" class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Number of Questions
+        <button class="btn btn-primary dropdown-toggle btn-block" type="button" data-toggle="dropdown">Number of Questions
           <span class="caret"></span></button>
         <ul class="dropdown-menu">
           <li><a href="#">10</a></li>
@@ -132,7 +135,7 @@
           <li><a href="#">30</a></li>
         </ul>
       </div>
-      <button type="button" class="btn-default">Players Ready</button>
+      <button id="readyButton" type="button" class="btn-primary">Players Ready</button>
     </div>
     <div id="playersGrid">
       <div id="playerCount">Number of Players: </div>
