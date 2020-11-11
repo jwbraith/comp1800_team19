@@ -15,7 +15,7 @@ File: main.html
 
 
 ## General Info
-This browser based web application to ...
+This browser based web application to serve up a multiplayer trivia game.
 	
 ## Technologies
 Technologies used for this project:
