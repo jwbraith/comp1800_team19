@@ -45,7 +45,13 @@ body {
   border-radius: 3%;
 }
 
+.hide{
+  display: none;
+}
 
+.grid{
+  display: grid;
+}
 
 .index-options > a{
   padding-top: 20px;
@@ -112,4 +118,28 @@ a:hover {
 
 .bg-warning {
   background-color: #ffd166;
+}
+
+#counter-container {
+  height: 100vh;
+  width: 100vw;
+  grid-template-rows: 35vh 15vh 15vh 35vh;
+  grid-template-columns: auto;
+  align-items: center;
+  justify-items: center;
+}
+
+#counter-container > p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 72pt;
+  font-family: 'Righteous', cursive;
+}
+
+#count {
+  grid-row: 2;
+}
+
+#seconds {
+  grid-row: 3;
 }

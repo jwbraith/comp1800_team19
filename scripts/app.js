@@ -2,7 +2,6 @@ const countdown = document.getElementById('counter-container')
 const questionContainerElement = document.getElementById('questions-container')
 const startButton = document.getElementById('start-button')
 
-<<<<<<< HEAD
 window.onload=function(){
     startButton.addEventListener("click", startGame);
   }
@@ -10,6 +9,7 @@ window.onload=function(){
 function startGame() {
     console.log('Game Started')
     countdown.classList.add('hide')
+    countdown.classList.remove('grid')
     startButton.classList.add('hide')
     questionContainerElement.classList.remove('hide')
 
@@ -27,7 +27,6 @@ function readQuestion() {
 }
 
 readQuestion();
-=======
 
 var roomsRef = db.collection("rooms");
 
@@ -39,4 +38,3 @@ function createRoom() {
     inviteID: "8945"
   })
 }
->>>>>>> 8cc83d3f68d0989dcbb13473747aa265e8bb368c
