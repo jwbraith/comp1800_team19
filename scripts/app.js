@@ -2,6 +2,7 @@ const countdown = document.getElementById('counter-container')
 const questionContainerElement = document.getElementById('questions-container')
 const startButton = document.getElementById('start-button')
 
+<<<<<<< HEAD
 window.onload=function(){
     startButton.addEventListener("click", startGame);
   }
@@ -26,3 +27,16 @@ function readQuestion() {
 }
 
 readQuestion();
+=======
+
+var roomsRef = db.collection("rooms");
+
+// creates a room for players to inhabit
+function createRoom() {
+  console.log("create Room function called");
+  roomsRef.doc("room1").set({
+    name: "room1",
+    inviteID: "8945"
+  })
+}
+>>>>>>> 8cc83d3f68d0989dcbb13473747aa265e8bb368c
