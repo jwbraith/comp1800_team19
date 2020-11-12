@@ -3,7 +3,7 @@
 
   <head>
     <meta charset="utf-8">
-    <title>My BCIT Project</title>
+    <title>play_with</title>
     <meta name="comp1800 boilerplate code" content="my bcit project">
     <meta name="author" content="BCIT">
 
@@ -17,6 +17,26 @@
     <!-- Optional CSS of your own -->
     <link type="text/css" rel="stylesheet" href="styles/app.css" />
 
+    <style>
+      #grid {
+        display: grid;
+        height: 100vh;
+        grid-template-columns: auto;
+        grid-template-rows: auto 1fr;
+      }
+
+      #inviteButton {
+        align-self: center;
+        justify-self: center;
+        height: 150px;
+        width: 300px;
+        font-size: 36pt;
+        line-height: 100%;
+        background-color: #118ab2;
+        border-color: #118ab2;
+      }
+    </style>
+
     <!-- Firebase libraries from CDN -->
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
@@ -27,56 +47,10 @@
     <script src="scripts/firebase_api_team19.js"> </script>
 
     <!-- Your own JavaScript functions included here    -->
-    <script src="scripts/login.js"></script>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
-      div {
-        font-size: 18pt;
-        border-radius: 10px;
-      }
-
-      #optionsGrid {
-        margin: auto;
-        margin-top: 5vh;
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: repeat(4, 4fr);
-        align-items: center;
-        justify-items: center;
-        height: 35vh;
-        width: 80vw;
-      }
-
-      #playersGrid {
-        margin: auto;
-        margin-top: 5vh;
-        display: grid;
-        grid-template-columns: 20% 80%;
-        grid-template-rows: repeat(4, 4fr);
-        align-items: center;
-        justify-items: center;
-        background-color: blue;
-        height: 40vh;
-        width: 80vw;
-        color: white;
-      }
-
-      .playerIcon {
-        width: 65%;
-        height: 80%;
-        border-radius: 50%;
-        background-color: red;
-      }
       
-      .dropdown {
-        width: 80%;
-      }
-
-      #playerCount {
-        grid-row: 1;
-        grid-column: 1 / span 2;
-      }
     </style>
   </head>
 
@@ -85,6 +59,7 @@
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
+    <div id="grid">
     <!-- Header Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="">Huddle</a>
@@ -106,47 +81,11 @@
       </div>
     </nav>
 
-    <div id="optionsGrid" class="bg-primary">
-      <div id="topicDrop" class="dropdown">
-        <button id="topic" class="btn btn-warning dropdown-toggle btn-block" type="button" data-toggle="dropdown">Topic
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#">Geography</a></li>
-          <li><a href="#">History</a></li>
-          <li><a href="#">Language</a></li>
-        </ul>
 
-      </div>
-      <div id="diffDrop" class="dropdown">
-        <button class="btn btn-warning dropdown-toggle btn-block" type="button" data-toggle="dropdown">Difficulty
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">Easy</a></li>
-          <li><a href="#">Peasy</a></li>
-          <li><a href="#">Nightmare</a></li>
-        </ul>
-      </div>
-      <div id="numQuestions" class="dropdown">
-        <button class="btn btn-warning dropdown-toggle btn-block" type="button" data-toggle="dropdown">Number of Questions
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">10</a></li>
-          <li><a href="#">15</a></li>
-          <li><a href="#">30</a></li>
-        </ul>
-      </div>
-      <button id="readyButton" type="button" class="btn-warning">Players Ready</button>
-    </div>
-    <div id="playersGrid">
-      <div id="playerCount">Number of Players: </div>
-      <div class="playerIcon"></div>
-      <div class="playerName">Frederico Fellini</div>
-      <div class="playerIcon"></div>
-      <div class="playerName">Allison Handstand</div>
-      <div class="playerIcon"></div>
-      <div class="playerName">Jurgen Habermas</div>
-    </div>
+    <a id="inviteButton" href="invite.html"><button id="inviteButton" type="button" class="btn-primary btn-lg" onclick="createRoom()">Invite Friends</button></a>
 
+
+    </div>
     <!-------------------------------------------->
     <!-- The following is JS for functionality  -->
     <!-------------------------------------------->
@@ -164,6 +103,7 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
       </script>
 
+    <script src="scripts/app.js"></script>
 
   </body>
 
