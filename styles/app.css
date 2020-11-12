@@ -57,6 +57,10 @@ body {
   padding-top: 20px;
 }
 
+a {
+  color: white;
+}
+
 a:hover {
   color: white;
   text-decoration: none;
