@@ -16,7 +16,7 @@ function startGame() {
 }
 //Will have to find a way to randomize the questions that we pull out from the database and mix up the order of the multiple choices. 
 function readQuestion() {
-    db.collection("questions").doc("questions")
+    db.collection("questions").doc("01")
     .onSnapshot(function(snap){
         document.getElementById("questions-prompt").innerText = snap.data().question;
         document.getElementById("btn-1").innerText = snap.data().correct_answer;
