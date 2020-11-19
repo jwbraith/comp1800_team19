@@ -116,12 +116,13 @@ a:hover {
   background-color: #073b4c !important;
 }
 
+
 .bg-primary {
   background-color: #118ab2;
 }
 
 .bg-warning {
-  background-color: #ffd166;
+  background-color: #06d6a0;
 }
 
 #counter-container {
@@ -149,7 +150,11 @@ a:hover {
 }
 
 .logo {
-  width: 70px;
+  width: 120px;
   padding: 0;
-  margin-bottom: -15px;
+  margin-bottom: -30px;
+}
+
+.navbar-toggler {
+  font-size: 2rem;
 }

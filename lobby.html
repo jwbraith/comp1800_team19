@@ -27,7 +27,7 @@
     <script src="scripts/firebase_api_team19.js"> </script>
 
     <!-- Your own JavaScript functions included here    -->
-    <script src="scripts/login.js"></script>
+
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
@@ -56,26 +56,33 @@
         grid-template-rows: repeat(4, 4fr);
         align-items: center;
         justify-items: center;
-        background-color: blue;
         height: 40vh;
         width: 80vw;
-        color: white;
       }
 
       .playerIcon {
         width: 65%;
         height: 80%;
         border-radius: 50%;
-        background-color: red;
+        background-color: #ef476f;
       }
       
       .dropdown {
         width: 80%;
       }
 
+      .btn {
+        font-size: 18pt;
+      }
+
       #playerCount {
         grid-row: 1;
         grid-column: 1 / span 2;
+        font-size: 24pt;
+      }
+
+      .playerName {
+        font-size: 24pt;
       }
     </style>
   </head>
@@ -135,9 +142,9 @@
           <li><a href="#">30</a></li>
         </ul>
       </div>
-      <button id="readyButton" type="button" class="btn-warning"><a href="game.html">Players Ready</a></button>
+      <button id="readyButton" type="button" class="btn-warning"><a href="game.html" class="text-dark">Players Ready</a></button>
     </div>
-    <div id="playersGrid">
+    <div id="playersGrid" class="bg-primary text-dark">
       <div id="playerCount">Number of Players: </div>
       <div class="playerIcon"></div>
       <div class="playerName">Frederico Fellini</div>
