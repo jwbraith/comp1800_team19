@@ -116,13 +116,17 @@ a:hover {
   background-color: #073b4c !important;
 }
 
+.text-dark {
+  color: black !important;
+}
+
 
 .bg-primary {
   background-color: #118ab2;
 }
 
 .bg-warning {
-  background-color: #06d6a0;
+  background-color: #06d6a0 !important;
 }
 
 #counter-container {
