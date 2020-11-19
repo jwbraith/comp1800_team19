@@ -4,7 +4,8 @@
 
 
 body {
-  background: url("../images/background.jpg") no-repeat center center fixed;
+  background:
+  url("../images/theme_frame.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -18,7 +19,7 @@ body {
 
 .index-logo {
   text-align: center;
-  margin-top: 150px;
+  margin-top: 200px;
 }
 
 .index-logo > img{
@@ -154,9 +155,9 @@ a:hover {
 }
 
 .logo {
-  width: 120px;
+  width: 80px;
   padding: 0;
-  margin-bottom: -30px;
+  margin-bottom: -20px;
 }
 
 .navbar-toggler {
