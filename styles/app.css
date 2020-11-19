@@ -18,12 +18,12 @@ body {
 
 .index-logo {
   text-align: center;
-  margin-top: 200px;
+  margin-top: 150px;
 }
 
 .index-logo > img{
   width: 300px;
-  margin-bottom: 30px;
+  margin-bottom: -50px;
 }
 
 .index-options > div {
@@ -146,4 +146,10 @@ a:hover {
 
 #seconds {
   grid-row: 3;
+}
+
+.logo {
+  width: 70px;
+  padding: 0;
+  margin-bottom: -15px;
 }
