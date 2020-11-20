@@ -81,32 +81,39 @@ a:hover {
 }
 
 #questions-container {
-  width: 800px;
-  max-width: 80%;
-  background-color: rgb(233, 233, 233);
-  border-radius: 5px;
+
   margin: 0 auto;
+  margin-top: 5%;
   text-align: center;
-  margin-top: 15%;
-  padding: 30px;
-  box-shadow: 0 0 10px 2px;
-  font-size: 20px;
+  padding: 30px 5vw;
+
+}
+
+#questions-prompt {
+  font-size: 2.5em;
 }
 
 .btn-grid {
-  padding-top: 40px;
+  padding-top: 50px;
   display: grid;
   grid-gap: 10px;
+  grid-template-columns: 60vw;
+  justify-content: center;
 }
 
 .btn {
-  border: 1px solid rgb(180, 180, 180);
-  box-shadow: 0 0 3px 1px;
+  border: 1px rgb(77, 77, 77) solid;
+  font-size: 1.5em;
+  background-color: #EBB3A9;
+  padding: 15px 0px;
+  box-shadow: 0 1px 1px 1px;
+  margin: 0px 20px;
 }
 
 .btn:hover {
-  background-color: rgb(218, 218, 218);
-  border: 1px solid rgb(75, 75, 75);
+  box-shadow: 0 1px 3px 2px;
+  margin: 0px -10px;
+  font-size: 1.6em;
 }
 
 .bg-dark {
@@ -188,4 +195,18 @@ a:hover {
 #main-page-invite {
   text-align: center;
   margin-top: 30px;
+}
+
+#score {
+  font-size: 2em;
+  padding-top: 20px;
+  padding-left: 40px;
+  color: #242424;
+}
+
+#timer {
+  float: right;
+  margin-right: 40px;
+  margin-top: -1.3em;
+  font-size: 2em;
 }

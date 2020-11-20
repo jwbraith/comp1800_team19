@@ -45,17 +45,19 @@
 
 <body class="game-body">
   <div id="counter-container" class="grid">
-    <p id="count">60</p>
-    <p id="seconds">Seconds</p>
-
-    <script src="scripts/countdown.js"></script>
+    <p id="count"></p>
   </div>
 
   <div>
-    <button type="button" id="start-button">Start</button>
+    <button type="button" id="start-button" class="hide">Start</button>
   </div>
 
   <div class="game-container">
+    <div id="score-timer-container" class="hide">
+      <div id="score">Score: <span id="score-counter">0</span></div>
+      <div id="timer">Time Left: <span id="game-timer"></span></div>
+    </div>
+    
     <div id="questions-container" class="hide">
       <div id="questions-prompt">
         <!--Will have to use js to update this number everytime a question is asked-->
