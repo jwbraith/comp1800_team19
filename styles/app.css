@@ -66,9 +66,6 @@ a:hover {
   text-decoration: none;
 }
 
-.profile-picture {
-  border-radius: 50%;
-}
 
 .main-profile {
   text-align: center;
@@ -113,7 +110,7 @@ a:hover {
 }
 
 .bg-dark {
-  background-color: #073b4c !important;
+  background-color:rgb(37, 37, 37) !important;
 }
 
 .text-dark {
@@ -161,4 +158,34 @@ a:hover {
 
 .navbar-toggler {
   font-size: 2rem;
+}
+
+#message {
+  font-size: 3EM;
+}
+
+#name-button {
+  background-color:#E87EA1;
+  color: white;
+  border: 1px solid grey;
+  box-shadow: 0 0 10px 2px;
+  padding: 10px 20px;
+}
+
+#my-form {
+  font-size: 1.5em;
+}
+
+#invite-friends-btn {
+  background-color:#E87EA1;
+  color: white;
+  border: 1px solid grey;
+  box-shadow: 0 0 10px 2px;
+  padding: 10px 20px;
+  font-size: 1.5em;
+}
+
+#main-page-invite {
+  text-align: center;
+  margin-top: 30px;
 }

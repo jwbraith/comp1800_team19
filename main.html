@@ -41,7 +41,7 @@
           <a class="nav-link" href="#">my data</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="profile.html">my profile</a>
+          <a class="nav-link" href="main.html">my profile</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="login.html">login/signup</a>
@@ -51,11 +51,21 @@
   </nav>
 
   <div class="main-profile">
-    <img class="profile-picture" src="https://dummyimage.com/200x200/000/0011ff&text=Dummy+Profile">
+    <div id="message">
+      Hello <span id="name-display"></span>
+    </div>
     <br>
-    <a>Upload picture</a>
-    <div>
-      Hello <span id="username">user</span>
+
+      <form id="my-form">
+        <label for="display-name">Enter Display Name</label><br>
+        <input type="text" id="diplay-name" name="display-name" value="Display Name">
+        <br>
+        <br>
+        <input type="button" value="Set Name" onclick="getName()" id="name-button">
+      </form>
+    </div>
+    <div id="main-page-invite">
+      <button id="invite-friends-btn"><a href = "invite.html">Invite Friends</a></button>
     </div>
   </div>
 
@@ -84,8 +94,9 @@
 
   <!-- Your own JavaScript functions included here    -->
 
-  <script src="scripts/firebase_api_team19.js"> </script>
   <script src="scripts/profile.js"> </script>
+  <script src="scripts/firebase_api_team19.js"> </script>
+  
 
 </body>
 
