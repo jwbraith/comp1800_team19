@@ -34,7 +34,7 @@
               <a class="nav-link" href="login.html">my data</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="profile.html">my profile</a>
+              <a class="nav-link" href="main.html">my profile</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="login.html">login/signup</a>
@@ -45,27 +45,29 @@
 
 <body class="game-body">
   <div id="counter-container" class="grid">
-    <p id="count">60</p>
-    <p id="seconds">Seconds</p>
-
-    <script src="scripts/countdown.js"></script>
+    <p id="count"></p>
   </div>
 
   <div>
-    <button type="button" id="start-button">Start</button>
+    <button type="button" id="start-button" class="hide">Start</button>
   </div>
 
   <div class="game-container">
+    <div id="score-timer-container" class="hide">
+      <div id="score">Score: <span id="score-counter">0</span></div>
+      <div id="timer">Time Left: <span id="game-timer"></span></div>
+    </div>
+    
     <div id="questions-container" class="hide">
       <div id="questions-prompt">
         <!--Will have to use js to update this number everytime a question is asked-->
         Question Number: 1 
       </div>
       <div id="answer-btn" class="btn-grid">
-        <button id="btn-1" class="btn-answr">Answer 1</button>
-        <button id="btn-2" class="btn-answr">Answer 2</button>
-        <button id="btn-3" class="btn-answr">Answer 3</button>
-        <button id="btn-4" class="btn-answr">Answer 4</button>
+        <button class="btn" id="btn-1">Answer 1</button>
+        <button class="btn" id="btn-2">Answer 2</button>
+        <button class="btn" id="btn-3">Answer 3</button>
+        <button class="btn" id="btn-4">Answer 4</button>
       </div>
     </div>
   </div>

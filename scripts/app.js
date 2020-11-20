@@ -1,7 +1,9 @@
 const countdown = document.getElementById('counter-container')
 const questionContainerElement = document.getElementById('questions-container')
 const startButton = document.getElementById('start-button')
-const questionElement = document.getElementById("questions-prompt");
+const questionElement = document.getElementById('questions-prompt')
+const scoreAndTimer = document.getElementById('score-timer-container')
+let score = 0;
 
 
 let btn1 = document.getElementById("btn-1");
@@ -28,16 +30,13 @@ let questionArray = [{
 ];
 
 
-window.onload = function () {
-  startButton.addEventListener("click", startGame);
-}
-
 function startGame() {
   console.log('Game Started')
   countdown.classList.add('hide')
   countdown.classList.remove('grid')
-  startButton.classList.add('hide')
   questionContainerElement.classList.remove('hide')
+  scoreAndTimer.classList.remove('hide')
+  startGameTimer()
   setQuestion()
 
 }
@@ -149,3 +148,31 @@ function createRoom() {
   })
 }
 
+function startGameTimer(){
+  var timeleft = 15;
+  var downloadTimer = setInterval(function(){
+    if(timeleft <= 0){
+      clearInterval(downloadTimer);
+      document.getElementById("game-timer").innerHTML = "Times Up!";
+    } else {
+      document.getElementById("game-timer").innerHTML = timeleft + " seconds remaining";
+    }
+    timeleft -= 1;
+  }, 1000);
+}
+
+function Countdown(){
+  var timeleft = 5;
+  var downloadTimer = setInterval(function(){
+    if(timeleft <= 0){
+      clearInterval(downloadTimer);
+      document.getElementById("count").innerHTML = "Times Up!";
+      startGame()
+    } else {
+      document.getElementById("count").innerHTML = "Game Starting in: " + timeleft;
+    }
+    timeleft -= 1;
+  }, 1000);
+}
+
+Countdown()

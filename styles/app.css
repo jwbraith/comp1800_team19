@@ -4,7 +4,11 @@
 
 
 body {
+<<<<<<< HEAD
   background-color: #FFD166;
+=======
+  background-color: #EEEBD0;
+>>>>>>> 6a53076d65f2487860919d336294952b0f796f79
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -18,7 +22,7 @@ body {
 
 .index-logo {
   text-align: center;
-  margin-top: 150px;
+  margin-top: 200px;
 }
 
 .index-logo > img{
@@ -32,14 +36,14 @@ body {
 }
 
 .anon-btn {
-  background-color: #073b4c;
+  background-color: #E87EA1;
   color: white;
   padding: 15px;
   border-radius: 3%;
 }
 
 .login-btn {
-  background-color: #073b4c;
+  background-color: #E87EA1;
   color: white;
   padding: 15px;
   border-radius: 3%;
@@ -66,9 +70,6 @@ a:hover {
   text-decoration: none;
 }
 
-.profile-picture {
-  border-radius: 50%;
-}
 
 .main-profile {
   text-align: center;
@@ -84,27 +85,40 @@ a:hover {
 }
 
 #questions-container {
+<<<<<<< HEAD
   width: 800px;
   max-width: 80%;
   background-color: #ebb3a9;
   border-radius: 5px;
+=======
+
+>>>>>>> 6a53076d65f2487860919d336294952b0f796f79
   margin: 0 auto;
+  margin-top: 5%;
   text-align: center;
-  margin-top: 15%;
-  padding: 30px;
-  box-shadow: 0 0 10px 2px;
-  font-size: 20px;
+  padding: 30px 5vw;
+
+}
+
+#questions-prompt {
+  font-size: 2.5em;
 }
 
 .btn-grid {
-  padding-top: 40px;
+  padding-top: 50px;
   display: grid;
   grid-gap: 10px;
+  grid-template-columns: 60vw;
+  justify-content: center;
 }
 
 .btn {
-  border: 1px solid rgb(180, 180, 180);
-  box-shadow: 0 0 3px 1px;
+  border: 1px rgb(77, 77, 77) solid;
+  font-size: 1.5em;
+  background-color: #EBB3A9;
+  padding: 15px 0px;
+  box-shadow: 0 1px 1px 1px;
+  margin: 0px 20px;
 }
 
 .btn-answr {
@@ -112,12 +126,13 @@ a:hover {
 }
 
 .btn:hover {
-  background-color: #e86252;
-  border: 1px solid rgb(75, 75, 75);
+  box-shadow: 0 1px 3px 2px;
+  margin: 0px -10px;
+  font-size: 1.6em;
 }
 
 .bg-dark {
-  background-color: #073b4c !important;
+  background-color:rgb(37, 37, 37) !important;
 }
 
 .text-dark {
@@ -163,11 +178,55 @@ a:hover {
 }
 
 .logo {
-  width: 120px;
+  width: 80px;
   padding: 0;
-  margin-bottom: -30px;
+  margin-bottom: -20px;
 }
 
 .navbar-toggler {
   font-size: 2rem;
+}
+
+#message {
+  font-size: 3EM;
+}
+
+#name-button {
+  background-color:#E87EA1;
+  color: white;
+  border: 1px solid grey;
+  box-shadow: 0 0 10px 2px;
+  padding: 10px 20px;
+}
+
+#my-form {
+  font-size: 1.5em;
+}
+
+#invite-friends-btn {
+  background-color:#E87EA1;
+  color: white;
+  border: 1px solid grey;
+  box-shadow: 0 0 10px 2px;
+  padding: 10px 20px;
+  font-size: 1.5em;
+}
+
+#main-page-invite {
+  text-align: center;
+  margin-top: 30px;
+}
+
+#score {
+  font-size: 2em;
+  padding-top: 20px;
+  padding-left: 40px;
+  color: #242424;
+}
+
+#timer {
+  float: right;
+  margin-right: 40px;
+  margin-top: -1.3em;
+  font-size: 2em;
 }
