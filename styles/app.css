@@ -4,8 +4,7 @@
 
 
 body {
-  background:
-  url("../images/theme_frame.png") no-repeat center center fixed;
+  background-color: #EEEBD0;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -33,14 +32,14 @@ body {
 }
 
 .anon-btn {
-  background-color: #073b4c;
+  background-color: #E87EA1;
   color: white;
   padding: 15px;
   border-radius: 3%;
 }
 
 .login-btn {
-  background-color: #073b4c;
+  background-color: #E87EA1;
   color: white;
   padding: 15px;
   border-radius: 3%;
