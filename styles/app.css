@@ -4,7 +4,7 @@
 
 
 body {
-  background: url("../images/background.jpg") no-repeat center center fixed;
+  background-color: #FFD166;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -86,7 +86,7 @@ a:hover {
 #questions-container {
   width: 800px;
   max-width: 80%;
-  background-color: rgb(233, 233, 233);
+  background-color: #ebb3a9;
   border-radius: 5px;
   margin: 0 auto;
   text-align: center;
@@ -107,8 +107,12 @@ a:hover {
   box-shadow: 0 0 3px 1px;
 }
 
+.btn-answr {
+  background-color: #e86252;
+}
+
 .btn:hover {
-  background-color: rgb(218, 218, 218);
+  background-color: #e86252;
   border: 1px solid rgb(75, 75, 75);
 }
 
@@ -122,11 +126,16 @@ a:hover {
 
 
 .bg-primary {
-  background-color: #118ab2;
+  background-color: #118ab2 !important;
 }
 
 .bg-warning {
   background-color: #06d6a0 !important;
+}
+
+.btn-warning {
+  background-color: #06d6a0 !important;
+  border-color: #06d6a0 !important;
 }
 
 #counter-container {
