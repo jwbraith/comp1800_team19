@@ -42,7 +42,9 @@ function startGame() {
 }
 
 function setQuestion() {
-  db.collection("questions").doc("01")
+  let questionOrder = ["01", "02", "03", "04"];
+  shuffle(questionOrder)
+  db.collection("questions").doc(questionOrder[0])
     .onSnapshot(function (snap) {
       const option1 = snap.data().correct_answer;
       const option2 = snap.data().incorrect_answers[0];

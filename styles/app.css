@@ -23,7 +23,7 @@ body {
 
 .index-logo > img{
   width: 300px;
-  margin-bottom: -50px;
+  margin-bottom: -80px;
 }
 
 .index-options > div {
@@ -38,11 +38,25 @@ body {
   border-radius: 3%;
 }
 
-.login-btn {
+#login-btn {
   background-color: #E87EA1;
   color: white;
   padding: 15px;
   border-radius: 3%;
+  border: 0;
+}
+
+#signup-btn {
+  background-color: #E87EA1;
+  color: white;
+  padding: 15px;
+  border-radius: 3%;
+  border: 0;
+}
+
+#logout-btn {
+  color: white;
+
 }
 
 .hide{

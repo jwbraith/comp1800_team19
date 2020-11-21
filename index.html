@@ -29,8 +29,17 @@
     <img src="images/Huddle3.png" alt="logo">
   </div>
   <div class="index-options">
-    <div><a type="button" href="main.html" class="anon-btn">Play As Anonymous!</a></div>
-    <div><a type="button" class="login-btn" href="login.html">Login or Sign up</a></div>
+    <input type="email" id="textEmail" placeholder="Email">
+    <br>
+    <input type="password" id="textPassword" placeholder="Password">
+    <br>
+    <br>
+
+    <div>
+      <button id="login-btn" value="Login">Login</button>
+      <button id="signup-btn" value="Sign Up">Sign Up</button>
+    </div>
+    <div><a type="button" id="logout-btn" href="" class="hide">Log Out</a></div>
   </div>
 
   <!----------------------------------------------->
@@ -56,8 +65,7 @@
   <script src="scripts/firebase_api_team19.js"> </script>
 
   <!-- Your own JavaScript functions included here    -->
-  <script src="scripts/app.js"> </script>
-
+  <script src="scripts/login.js"></script>
 
 </body>
 
