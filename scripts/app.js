@@ -45,11 +45,15 @@ function startGame() {
 
 }
 
-
+//sets the question by pulling out question from the database. --> will need to implement a function that pulls out randomly rather
+//than me doing it manually
 function setQuestion() {
-  let questionOrder = ["01", "02", "03", "04"];
+  let questionOrder = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
   let shuffledOrder = shuffle(questionOrder)
   let currentQuestionIndex = 0;
+
+  //for now! --> will have to change later if we expand on this project later!
+  let questionLimit = questionOrder.size() - 1; 
 
   db.collection("questions").doc(shuffledOrder[currentQuestionIndex])
     .onSnapshot(function (snap) {
@@ -59,20 +63,23 @@ function setQuestion() {
       let option4 = snap.data().incorrect_answers[2];
 
 
+      //shuffled question list
       let questionList = [option1, option2, option3, option4];
       let shuffledQuestions = shuffle(questionList)
 
+      //random choices assigned to buttons
       btn1.innerText = shuffledQuestions[0];
       btn2.innerText = shuffledQuestions[1];
       btn3.innerText = shuffledQuestions[2];
       btn4.innerText = shuffledQuestions[3];
 
-
+      //sets up the question array so that a boolean value is associated with the choices. 
       questionArray = setCorrect(shuffledOrder, currentQuestionIndex, shuffledQuestions, questionArray)
 
+      //displays question
       questionElement.innerText = snap.data().question;
 
-
+      //used for debugging
       console.log(questionArray)
       
       
@@ -80,6 +87,9 @@ function setQuestion() {
       scoreContainer.innerText = score;
     })
 
+    //There may be a more efficient way of doing this function
+    //when one of the button is clicked, the function determines if it is correct or not.
+    //if correct, calls isCorrect, if wrong, calls isWrong. Calls disableClick() regardless
     function selectAnswer(array) {
       btn1.onclick = function() {
         if (array[0].correct) {
