@@ -127,7 +127,10 @@ function isWrong() {
 }
 
 function disableClick() {
-  
+  btn1.setAttribute('disabled', true)
+  btn2.setAttribute('disabled', true)
+  btn3.setAttribute('disabled', true)
+  btn4.setAttribute('disabled', true)
 }
 
 }
