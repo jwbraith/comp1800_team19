@@ -6,7 +6,6 @@
     const textPassword = document.getElementById("textPassword");
     const loginButton = document.getElementById("login-btn");
     const signupButton = document.getElementById("signup-btn");
-    const logoutButton = document.getElementById("logout-btn");
 
     loginButton.addEventListener('click', e => {
         const email = textEmail.value;
@@ -32,7 +31,6 @@
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser) {
             console.log(firebaseUser);
-            logoutButton.classList.remove('hide');
             loginButton.classList.add('hide');
             signupButton.classList.add('hide');
             textPassword.classList.add('hide');
@@ -40,7 +38,7 @@
             window.location.href = "main.html"
         } else {
             console.log('not logged in')
-            logoutButton.classList.remove('hide');
+
         }
     })
 

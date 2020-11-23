@@ -21,12 +21,12 @@ body {
   margin-top: 200px;
 }
 
-.index-logo > img{
+.index-logo>img {
   width: 300px;
   margin-bottom: -80px;
 }
 
-.index-options > div {
+.index-options>div {
   padding-top: 0px;
   padding-bottom: 10px;
 }
@@ -59,15 +59,15 @@ body {
 
 }
 
-.hide{
+.hide {
   display: none;
 }
 
-.grid{
+.grid {
   display: grid;
 }
 
-.index-options > a{
+.index-options>a {
   padding-top: 20px;
 }
 
@@ -104,20 +104,20 @@ a:hover {
 }
 
 #questions-prompt {
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
 .btn-grid {
   padding-top: 50px;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 60vw;
+  grid-template-columns: 70vw;
   justify-content: center;
 }
 
 .btn {
   border: 1px rgb(77, 77, 77) solid;
-  font-size: 1.5em;
+  font-size: 1.4em;
   background-color: #EBB3A9;
   padding: 15px 0px;
   box-shadow: 0 1px 1px 1px;
@@ -131,7 +131,7 @@ a:hover {
 }
 
 .bg-dark {
-  background-color:rgb(37, 37, 37) !important;
+  background-color: rgb(37, 37, 37) !important;
 }
 
 .text-dark {
@@ -156,10 +156,10 @@ a:hover {
   justify-items: center;
 }
 
-#counter-container > p {
+#counter-container>p {
   margin-top: 0px;
   margin-bottom: 0px;
-  font-size: 72pt;
+  font-size: 5vw;
   font-family: 'Righteous', cursive;
 }
 
@@ -186,7 +186,7 @@ a:hover {
 }
 
 #name-button {
-  background-color:#E87EA1;
+  background-color: #E87EA1;
   color: white;
   border: 1px solid grey;
   box-shadow: 0 0 10px 2px;
@@ -198,7 +198,7 @@ a:hover {
 }
 
 #invite-friends-btn {
-  background-color:#E87EA1;
+  background-color: #E87EA1;
   color: white;
   border: 1px solid grey;
   box-shadow: 0 0 10px 2px;
@@ -219,8 +219,65 @@ a:hover {
 }
 
 #timer {
-  float: right;
-  margin-right: 40px;
-  margin-top: -1.3em;
+  padding-left: 40px;
+  font-size: 2em;
+}
+
+#textEmail {
+  width: 250px;
+  border: 1px solid #E87EA1;
+  margin-bottom: 5px;
+}
+
+#textPassword {
+  width: 250px;
+  border: 1px solid #E87EA1;
+}
+
+.thought {
+  background-color: #E87EA1;
+  padding: 20px;
+  border-radius: 30px;
+  min-width: 40px;
+  max-width: 220px;
+  min-height: 40px;
+  margin: 20px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.thought:before,
+.thought:after {
+  content: "";
+  background-color:#E87EA1;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  z-index: -1;
+}
+
+.thought:before {
+  width: 44px;
+  height: 44px;
+  top: -12px;
+  left: 28px;
+  box-shadow: -50px 30px 0 -12px #E87EA1;
+}
+
+.thought:after {
+  bottom: -10px;
+  right: 26px;
+  width: 30px;
+  height: 30px;
+  box-shadow: 40px -34px 0 0#E87EA1,
+    -28px -6px 0 -2px#E87EA1,
+    -24px 17px 0 -6px #E87EA1,
+    -5px 25px 0 -10px#E87EA1;
+
+}
+#answer-result{
+  margin-top: 75px;
   font-size: 2em;
 }
