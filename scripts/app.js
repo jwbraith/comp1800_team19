@@ -53,7 +53,6 @@ function setQuestion() {
   let currentQuestionIndex = 0;
 
   //for now! --> will have to change later if we expand on this project later!
-  let questionLimit = questionOrder.size() - 1; 
 
   db.collection("questions").doc(shuffledOrder[currentQuestionIndex])
     .onSnapshot(function (snap) {
