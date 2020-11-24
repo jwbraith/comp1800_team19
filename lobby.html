@@ -1,178 +1,179 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <meta charset="utf-8">
-    <title>My BCIT Project</title>
-    <meta name="comp1800 boilerplate code" content="my bcit project">
-    <meta name="author" content="BCIT">
+<head>
+  <meta charset="utf-8">
+  <title>My BCIT Project</title>
+  <meta name="comp1800 boilerplate code" content="my bcit project">
+  <meta name="author" content="BCIT">
 
-    <!-- Bootstrap for Mobile-first, and JQuery -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Bootstrap for Mobile-first, and JQuery -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <!-- Firebase CSS for Authentication UI -->
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+  <!-- Firebase CSS for Authentication UI -->
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
 
-    <!-- Optional CSS of your own -->
-    <link type="text/css" rel="stylesheet" href="styles/app.css" />
+  <!-- Optional CSS of your own -->
+  <link type="text/css" rel="stylesheet" href="styles/app.css" />
 
-    <!-- Firebase libraries from CDN -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+  <!-- Firebase libraries from CDN -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
 
-    <!-- Your own Firebase API key information -->
-    <script src="scripts/firebase_api_team19.js"> </script>
+  <!-- Your own Firebase API key information -->
+  <script src="scripts/firebase_api_team19.js"> </script>
 
-    <!-- Your own JavaScript functions included here    -->
+  <!-- Your own JavaScript functions included here    -->
 
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
-      div {
-        font-size: 18pt;
-        border-radius: 10px;
-      }
+    div {
+      font-size: 18pt;
+      border-radius: 10px;
+    }
 
-      #optionsGrid {
-        margin: auto;
-        margin-top: 5vh;
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: repeat(4, 4fr);
-        align-items: center;
-        justify-items: center;
-        height: 35vh;
-        width: 80vw;
-      }
+    #optionsGrid {
+      margin: auto;
+      margin-top: 5vh;
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(4, 4fr);
+      align-items: center;
+      justify-items: center;
+      height: 35vh;
+      width: 80vw;
+    }
 
-      #playersGrid {
-        margin: auto;
-        margin-top: 5vh;
-        display: grid;
-        grid-template-columns: 20% 80%;
-        grid-template-rows: repeat(4, 4fr);
-        align-items: center;
-        justify-items: center;
-        height: 40vh;
-        width: 80vw;
-        
-      }
+    #playersGrid {
+      margin: auto;
+      margin-top: 5vh;
+      display: grid;
+      grid-template-columns: 20% 80%;
+      grid-template-rows: repeat(4, 4fr);
+      align-items: center;
+      justify-items: center;
+      height: 40vh;
+      width: 80vw;
 
-      .playerIcon {
-        width: 75px;
-        height: 75px;
-        border-radius: 50%;
-        background-color: #06d6a0;
-      }
-      
-      .dropdown {
-        width: 80%;
-      }
+    }
 
-      .btn {
-        font-size: 18pt;
-      }
+    .playerIcon {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background-color: #ef476f;
+    }
 
-      #playerCount {
-        grid-row: 1;
-        grid-column: 1 / span 2;
-        font-size: 24pt;
-      }
+    .dropdown {
+      width: 80%;
+    }
 
-      .playerName {
-        font-size: 24pt;
-      }
-    </style>
-  </head>
+    .btn {
+      font-size: 18pt;
+    }
 
-  <body>
+    #playerCount {
+      grid-row: 1;
+      grid-column: 1 / span 2;
+      font-size: 24pt;
+    }
 
-    <!-------------------------------------->
-    <!-- The following is HTML for layout -->
-    <!-------------------------------------->
-    <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href=""><img src="images/nav-logo.png" class="logo"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">my data</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.html">my profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">login/signup</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    .playerName {
+      font-size: 24pt;
+    }
+  </style>
+</head>
 
-    <div id="optionsGrid" class="bg-primary">
-      <div id="topicDrop" class="dropdown">
-        <button id="topic" class="btn btn-warning dropdown-toggle btn-block" type="button" data-toggle="dropdown">Topic
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right">
-          <li><a href="#">Geography</a></li>
-          <li><a href="#">History</a></li>
-          <li><a href="#">Language</a></li>
-        </ul>
+<body>
 
-      </div>
-      <div id="diffDrop" class="dropdown">
-        <button class="btn btn-warning dropdown-toggle btn-block" type="button" data-toggle="dropdown">Difficulty
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">Easy</a></li>
-          <li><a href="#">Peasy</a></li>
-          <li><a href="#">Nightmare</a></li>
-        </ul>
-      </div>
-      <div id="numQuestions" class="dropdown">
-        <button class="btn btn-warning dropdown-toggle btn-block" type="button" data-toggle="dropdown">Number of Questions
-          <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a href="#">10</a></li>
-          <li><a href="#">15</a></li>
-          <li><a href="#">30</a></li>
-        </ul>
-      </div>
-      <button id="readyButton" type="button" class="btn-warning"><a href="game.html" class="text-dark">Players Ready</a></button>
+  <!-------------------------------------->
+  <!-- The following is HTML for layout -->
+  <!-------------------------------------->
+  <!-- Header Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href=""><img src="images/nav-logo.png" class="logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="login.html">my data</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.html">my profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.html" id="logout-btn">logout</a>
+        </li>
+      </ul>
     </div>
-    <div id="playersGrid" class="bg-primary text-dark">
-      <div id="playerCount">Number of Players: </div>
-      <div class="playerIcon"></div>
-      <div class="playerName">Frederico Fellini</div>
-      <div class="playerIcon"></div>
-      <div class="playerName">Allison Handstand</div>
-      <div class="playerIcon"></div>
-      <div class="playerName">Jurgen Habermas</div>
+  </nav>
+
+  <div id="optionsGrid" class="bg-primary">
+    <div id="topicDrop" class="dropdown">
+      <button id="topic" class="btn btn-warning dropdown-toggle btn-block" type="button" data-toggle="dropdown">Topic
+        <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-menu-right">
+        <li><a href="#">Geography</a></li>
+        <li><a href="#">History</a></li>
+        <li><a href="#">Language</a></li>
+      </ul>
+
     </div>
+    <div id="diffDrop" class="dropdown">
+      <button class="btn btn-warning dropdown-toggle btn-block" type="button" data-toggle="dropdown">Difficulty
+        <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">Easy</a></li>
+        <li><a href="#">Peasy</a></li>
+        <li><a href="#">Nightmare</a></li>
+      </ul>
+    </div>
+    <div id="numQuestions" class="dropdown">
+      <button class="btn btn-warning dropdown-toggle btn-block" type="button" data-toggle="dropdown">Number of Questions
+        <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="#">10</a></li>
+        <li><a href="#">15</a></li>
+        <li><a href="#">30</a></li>
+      </ul>
+    </div>
+    <button id="readyButton" type="button" class="btn-warning"><a href="game.html" class="text-dark">Players
+        Ready</a></button>
+  </div>
+  <div id="playersGrid" class="bg-primary text-dark">
+    <div id="playerCount">Number of Players: </div>
+    <div class="playerIcon"></div>
+    <div class="playerName">Frederico Fellini</div>
+    <div class="playerIcon"></div>
+    <div class="playerName">Allison Handstand</div>
+    <div class="playerIcon"></div>
+    <div class="playerName">Jurgen Habermas</div>
+  </div>
 
-    <!-------------------------------------------->
-    <!-- The following is JS for functionality  -->
-    <!-------------------------------------------->
+  <!-------------------------------------------->
+  <!-- The following is JS for functionality  -->
+  <!-------------------------------------------->
 
 
 
-    <!-- Bootstrap libraries from CDN -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-      </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-      </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-      </script>
+  <!-- Bootstrap libraries from CDN -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
 
-
-  </body>
+  <script src="scripts/logout.js"> </script>
+</body>
 
 </html>

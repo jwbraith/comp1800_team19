@@ -1,60 +1,45 @@
-// Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-var uiConfig = {
-    callbacks: {
-        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-            // User successfully signed in.
-            // Return type determines whether we continue the redirect automatically
-            // or whether we leave that to developer to handle.
-            //------------------------------------------------------------------------------------------
-            // The code below is modified from default snippet provided by the FB documentation.
-            //
-            // If the user is a "brand new" user, then create a new "user" in your own database.
-            // Assign this user with the name and email provided.
-            // Before this works, you must enable "Firestore" from the firebase console.
-            // The Firestore rules must allow the user to write. 
-            //------------------------------------------------------------------------------------------
-            var user = authResult.user;
-            if (authResult.additionalUserInfo.isNewUser) {
-                db.collection("users").doc(user.uid).set({
-                        name: user.displayName,
-                        email: user.email
-                    }).then(function () {
-                        console.log("New user added to firestore");
-                        window.location.assign("main.html");
-                    })
-                    .catch(function (error) {
-                        console.log("Error adding new user: " + error);
-                    });
-            } else {
-                return true;
-            }
-            return false;
-        },
-        uiShown: function () {
-            // The widget is rendered.
-            // Hide the loader.
-            document.getElementById('loader').style.display = 'none';
+
+
+(function() {
+    
+    const textEmail = document.getElementById("textEmail");
+    const textPassword = document.getElementById("textPassword");
+    const loginButton = document.getElementById("login-btn");
+    const signupButton = document.getElementById("signup-btn");
+
+    loginButton.addEventListener('click', e => {
+        const email = textEmail.value;
+        const pass = textPassword.value;
+        const auth = firebase.auth();
+
+        const promise = auth.signInWithEmailAndPassword(email, pass);
+
+        promise.catch(e => console.log(e.message));
+    });
+
+
+    signupButton.addEventListener('click', e => {
+        const email = textEmail.value;
+        const pass = textPassword.value;
+        const auth = firebase.auth();
+
+        const promise = auth.createUserWithEmailAndPassword(email, pass)
+
+        promise.catch(e => console.log(e.message));
+    });
+
+    firebase.auth().onAuthStateChanged(firebaseUser => {
+        if(firebaseUser) {
+            console.log(firebaseUser);
+            loginButton.classList.add('hide');
+            signupButton.classList.add('hide');
+            textPassword.classList.add('hide');
+            textEmail.classList.add('hide');
+            window.location.href = "main.html"
+        } else {
+            console.log('not logged in')
+
         }
-    },
-    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-    signInFlow: 'popup',
-    signInSuccessUrl: 'main.html',
-    signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        //firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        //firebase.auth.PhoneAuthProvider.PROVIDER_ID
-    ],
-    // Terms of service url.
-    tosUrl: 'main.html',
-    // Privacy policy url.
-    privacyPolicyUrl: 'main.html',
-    accountChooserEnabled: false
-};
-// The start method will wait until the DOM is loaded.
-// Inject the login interface into the HTML
-ui.start('#firebaseui-auth-container', uiConfig);
+    })
+
+}())

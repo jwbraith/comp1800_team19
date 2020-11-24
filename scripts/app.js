@@ -3,6 +3,10 @@ const questionContainerElement = document.getElementById('questions-container')
 const startButton = document.getElementById('start-button')
 const questionElement = document.getElementById('questions-prompt')
 const scoreAndTimer = document.getElementById('score-timer-container')
+const answerButtons = document.getElementById('answer-btn')
+let scoreContainer = document.getElementById('score-counter')
+let resultMessage = document.getElementById('result-message')
+let answerResult = document.getElementById('answer-result')
 let score = 0;
 
 
@@ -12,68 +16,6 @@ let btn3 = document.getElementById("btn-3");
 let btn4 = document.getElementById("btn-4");
 
 let questionArray = [{
-  text: btn1.innerText,
-  correct: false
-},
-{
-  text: btn2.innerText,
-  correct: false
-},
-{
-  text: btn3.innerText,
-  correct: false
-},
-{
-  text: btn4.innerText,
-  correct: false
-}
-];
-
-
-function startGame() {
-  console.log('Game Started')
-  countdown.classList.add('hide')
-  countdown.classList.remove('grid')
-  questionContainerElement.classList.remove('hide')
-  scoreAndTimer.classList.remove('hide')
-  startGameTimer()
-  setQuestion()
-
-}
-
-function setQuestion() {
-  db.collection("questions").doc("01")
-    .onSnapshot(function (snap) {
-      const option1 = snap.data().correct_answer;
-      const option2 = snap.data().incorrect_answers[0];
-      const option3 = snap.data().incorrect_answers[1];
-      const option4 = snap.data().incorrect_answers[2];
-
-
-      let shuffled = [option1, option2, option3, option4];
-      shuffle(shuffled)
-
-      btn1.innerText = shuffled[0];
-      btn2.innerText = shuffled[1];
-      btn3.innerText = shuffled[2];
-      btn4.innerText = shuffled[3];
-
-
-      questionArray = isCorrect(questionArray)
-
-      questionElement.innerText = snap.data().question;
-
-      console.log(questionArray)
-
-    })
-    
-
-    
-}
-
-function isCorrect(array) {
-
-  let array1 = [{
     text: btn1.innerText,
     correct: false
   },
@@ -89,32 +31,164 @@ function isCorrect(array) {
     text: btn4.innerText,
     correct: false
   }
-]
-  db.collection("questions").doc("01")
+];
+
+
+function startGame() {
+  console.log('Game Started')
+  countdown.classList.add('hide')
+  countdown.classList.remove('grid')
+  questionContainerElement.classList.remove('hide')
+  scoreAndTimer.classList.remove('hide')
+  startGameTimer()
+  setQuestion()
+
+}
+
+//sets the question by pulling out question from the database. --> will need to implement a function that pulls out randomly rather
+//than me doing it manually
+function setQuestion() {
+  let questionOrder = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
+  let shuffledOrder = shuffle(questionOrder)
+  let currentQuestionIndex = 0;
+
+  //for now! --> will have to change later if we expand on this project later!
+  let questionLimit = questionOrder.size() - 1; 
+
+  db.collection("questions").doc(shuffledOrder[currentQuestionIndex])
+    .onSnapshot(function (snap) {
+      let option1 = snap.data().correct_answer;
+      let option2 = snap.data().incorrect_answers[0];
+      let option3 = snap.data().incorrect_answers[1];
+      let option4 = snap.data().incorrect_answers[2];
+
+
+      //shuffled question list
+      let questionList = [option1, option2, option3, option4];
+      let shuffledQuestions = shuffle(questionList)
+
+      //random choices assigned to buttons
+      btn1.innerText = shuffledQuestions[0];
+      btn2.innerText = shuffledQuestions[1];
+      btn3.innerText = shuffledQuestions[2];
+      btn4.innerText = shuffledQuestions[3];
+
+      //sets up the question array so that a boolean value is associated with the choices. 
+      questionArray = setCorrect(shuffledOrder, currentQuestionIndex, shuffledQuestions, questionArray)
+
+      //displays question
+      questionElement.innerText = snap.data().question;
+
+      //used for debugging
+      console.log(questionArray)
+      
+      
+      selectAnswer(questionArray)
+      scoreContainer.innerText = score;
+    })
+
+    //There may be a more efficient way of doing this function
+    //when one of the button is clicked, the function determines if it is correct or not.
+    //if correct, calls isCorrect, if wrong, calls isWrong. Calls disableClick() regardless
+    function selectAnswer(array) {
+      btn1.onclick = function() {
+        if (array[0].correct) {
+          isCorrect()
+        } else {
+          isWrong()
+        }
+        disableClick()
+      }
+      btn2.onclick = function() {
+        if (array[1].correct) {
+          isCorrect()
+        } else {
+          isWrong()
+        }
+        disableClick()
+      }
+      btn3.onclick = function() {
+        if (array[2].correct) {
+          isCorrect()
+        } else {
+          isWrong()
+        }
+        disableClick()
+      }
+      btn4.onclick = function() {
+        if (array[3].correct) {
+          isCorrect()
+        } else {
+          isWrong()
+        }
+        disableClick()
+      }
+      
+    }
+
+function isCorrect() {
+  answerResult.classList.remove('hide')
+  resultMessage.innerText = "Correct";
+}
+
+function isWrong() {
+  answerResult.classList.remove('hide')
+  resultMessage.innerText = "Wrong";
+}
+
+function disableClick() {
+  btn1.setAttribute('disabled', true)
+  btn2.setAttribute('disabled', true)
+  btn3.setAttribute('disabled', true)
+  btn4.setAttribute('disabled', true)
+}
+
+}
+
+function setCorrect(order, i, list, array1) {
+
+  array1 = [{
+    text: list[0],
+    correct: false
+  },
+  {
+    text: list[1],
+    correct: false
+  },
+  {
+    text:list[2],
+    correct: false
+  },
+  {
+    text: list[3],
+    correct: false
+  }
+];
+
+  db.collection("questions").doc(order[i])
     .onSnapshot(function (snap) {
 
       correctAnswer = snap.data().correct_answer;
-      
 
-      if (btn1.innerText === correctAnswer) {
+
+      if (list[0] === (correctAnswer)) {
         array1[0].correct = true;
 
-      } else if (btn2.innerText === correctAnswer) {
+      } else if (list[1] === (correctAnswer)) {
         array1[1].correct = true;
 
-      } else if (btn3.innerText === correctAnswer) {
+      } else if (list[2] === (correctAnswer)) {
         array1[2].correct = true;
 
       } else {
         array1[3].correct = true;
       }
 
-      console.log(array1)
 
     })
 
-    return array1;
-    
+  return array1;
+
 }
 
 //This function shuffles elements inside an array --> used to shuffle the question orders
@@ -148,10 +222,10 @@ function createRoom() {
   })
 }
 
-function startGameTimer(){
+function startGameTimer() {
   var timeleft = 15;
-  var downloadTimer = setInterval(function(){
-    if(timeleft <= 0){
+  var downloadTimer = setInterval(function () {
+    if (timeleft <= 0) {
       clearInterval(downloadTimer);
       document.getElementById("game-timer").innerHTML = "Times Up!";
     } else {
@@ -161,10 +235,10 @@ function startGameTimer(){
   }, 1000);
 }
 
-function Countdown(){
+function Countdown() {
   var timeleft = 5;
-  var downloadTimer = setInterval(function(){
-    if(timeleft <= 0){
+  var downloadTimer = setInterval(function () {
+    if (timeleft <= 0) {
       clearInterval(downloadTimer);
       document.getElementById("count").innerHTML = "Times Up!";
       startGame()
