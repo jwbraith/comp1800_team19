@@ -96,7 +96,6 @@ function setQuestion() {
         } else {
           isWrong()
         }
-        disableClick()
       }
       btn2.onclick = function() {
         if (array[1].correct) {
@@ -104,7 +103,6 @@ function setQuestion() {
         } else {
           isWrong()
         }
-        disableClick()
       }
       btn3.onclick = function() {
         if (array[2].correct) {
@@ -112,7 +110,6 @@ function setQuestion() {
         } else {
           isWrong()
         }
-        disableClick()
       }
       btn4.onclick = function() {
         if (array[3].correct) {
@@ -120,7 +117,6 @@ function setQuestion() {
         } else {
           isWrong()
         }
-        disableClick()
       }
       
     }
@@ -128,11 +124,13 @@ function setQuestion() {
 function isCorrect() {
   answerResult.classList.remove('hide')
   resultMessage.innerText = "Correct";
+  disableClick()
 }
 
 function isWrong() {
   answerResult.classList.remove('hide')
   resultMessage.innerText = "Wrong";
+  disableClick()
 }
 
 function disableClick() {
