@@ -8,6 +8,8 @@ const $ = require('jquery');
 const fs = require('fs');
 const { dirname } = require('path');
 
+const state = {};
+const clientRooms = {};
 
 //STATIC DIRECTORIES
 app.use('/scripts', express.static(__dirname + '/scripts'));
@@ -16,8 +18,14 @@ app.use('/images', express.static(__dirname + '/images'));
 
 
 // SOCKET.IO
-io.on('connection', (socket) => {
-  console.log("A user connected: " + socket.id);
+io.on('connection', (client) => {
+  client.on('newGame', handleNewGame);
+
+  function handleNewGame() {
+    let roomName = "takipono";
+    clientRooms[client.id] = roomName;
+  }
+  console.log("A user connected: " + client.id);
 })
 
 
