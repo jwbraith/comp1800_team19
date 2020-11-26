@@ -49,8 +49,6 @@
     <!-- Your own JavaScript functions included here    -->
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-
-      
     </style>
   </head>
 
@@ -60,31 +58,31 @@
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
     <div id="grid">
-    <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href=""><img src="images/nav-logo.png" class="logo"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">my data</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="profile.html">my profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">login/signup</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+      <!-- Header Navigation Bar -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href=""><img src="images/nav-logo.png" class="logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">my data</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html">my profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">login/signup</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
 
-    <!-- <a id="inviteButton" href="invite.html"> -->
+      <!-- <a id="inviteButton" href="invite.html"> -->
       <button id="inviteButton" type="button" class="btn-primary btn-lg" onclick="createRoom()">Invite Friends</button>
-    <!-- </a> -->
+      <!-- </a> -->
 
 
     </div>
@@ -104,6 +102,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
       </script>
+    <script src="socket.io/socket.io.js"></script>
 
     <script src="scripts/play_with.js"></script>
 

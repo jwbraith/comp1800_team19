@@ -141,7 +141,7 @@ a:hover {
 
 .btn:hover {
   box-shadow: 0 1px 3px 2px;
-  margin: 0px -10px;
+  margin: 1px;
   font-size: 1.6em;
 }
 
@@ -300,4 +300,46 @@ a:hover {
 #answer-result{
   margin-top: 75px;
   font-size: 2em;
+}
+
+@media screen and (max-width: 700px) {
+  .btn {
+    font-size: 0.9em;
+    padding: 6px;
+  }
+
+  .btn:hover {
+
+  }
+
+  #questions-prompt{
+    font-size: 1.15em;
+  }
+
+  #score {
+    font-size: 1em;
+  }
+
+  #timer {
+    font-size: 1em;
+  }
+
+  #answer-result{
+    font-size: 1em;
+  }
+
+  .logo {
+    width: 60px;
+    padding: 0;
+  }
+
+  .nav-item {
+    font-size: 14px;
+  }
+
+  .navbar-toggler-icon {
+    width: 0.8em;
+    height: 0.8em;
+
+  }
 }
