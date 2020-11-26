@@ -8,6 +8,17 @@ $(function () {
   })
 });
 
+function createGame() {
+  socket.emit('newGame');
+  // instead of init, redirect to lobby room
+}
+
+function joinGame() {
+  const code = gameCode.value();
+  socket.emit('joinGame', code);
+  // instead of init, redirect to lobby room
+}
+
 
 var roomsRef = db.collection("rooms");
 
