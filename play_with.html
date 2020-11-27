@@ -22,10 +22,10 @@
         display: grid;
         height: 100vh;
         grid-template-columns: auto;
-        grid-template-rows: auto 1fr;
+        grid-template-rows: auto 1fr 1fr 1fr 1fr;
       }
 
-      #inviteButton {
+      #createButton, #joinButton {
         align-self: center;
         justify-self: center;
         height: 240px;
@@ -34,6 +34,10 @@
         line-height: 100%;
         background-color: #118ab2;
         border-color: #118ab2;
+      }
+
+      input[type=text] {
+        font-size: 36pt;
       }
     </style>
 
@@ -81,8 +85,10 @@
 
 
       <!-- <a id="inviteButton" href="invite.html"> -->
-      <button id="inviteButton" type="button" class="btn-primary btn-lg" onclick="createGame()">Invite Friends</button>
+      <button id="createButton" type="button" class="btn-primary btn-lg" onclick="createRoom()">Create Room</button>
+      <button id="joinButton" type="button" class="btn-primary btn-lg" onclick="joinRoom()">Join Room</button>
       <h1>Your Room Code is: <span id="roomCodeDisplay"></span></h1>
+      <input type="text" name="roomCodeField" id="roomCodeField">
       <!-- </a> -->
 
 
