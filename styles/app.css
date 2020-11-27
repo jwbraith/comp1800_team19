@@ -4,11 +4,7 @@
 
 
 body {
-<<<<<<< HEAD
-  background-color: #FFD166;
-=======
   background-color: #EEEBD0;
->>>>>>> 6a53076d65f2487860919d336294952b0f796f79
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -99,14 +95,6 @@ a:hover {
 }
 
 #questions-container {
-<<<<<<< HEAD
-  width: 800px;
-  max-width: 80%;
-  background-color: #ebb3a9;
-  border-radius: 5px;
-=======
-
->>>>>>> 6a53076d65f2487860919d336294952b0f796f79
   margin: 0 auto;
   margin-top: 5%;
   text-align: center;
