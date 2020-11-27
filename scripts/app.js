@@ -4,10 +4,12 @@ const startButton = document.getElementById('start-button')
 const questionElement = document.getElementById('questions-prompt')
 const scoreAndTimer = document.getElementById('score-timer-container')
 const answerButtons = document.getElementById('answer-btn')
+const timer = document.getElementById('timer')
 let scoreContainer = document.getElementById('score-counter')
 let resultMessage = document.getElementById('result-message')
 let answerResult = document.getElementById('answer-result')
 let score = 0;
+let timeStopped = false;
 
 
 let btn1 = document.getElementById("btn-1");
@@ -80,87 +82,108 @@ function setQuestion() {
 
       //used for debugging
       console.log(questionArray)
-      
-      
+
+
       selectAnswer(questionArray)
       scoreContainer.innerText = score;
     })
 
-    //There may be a more efficient way of doing this function
-    //when one of the button is clicked, the function determines if it is correct or not.
-    //if correct, calls isCorrect, if wrong, calls isWrong. Calls disableClick() regardless
-    function selectAnswer(array) {
-      btn1.onclick = function() {
-        if (array[0].correct) {
-          isCorrect()
-        } else {
-          isWrong()
-        }
+  //There may be a more efficient way of doing this function
+  //when one of the button is clicked, the function determines if it is correct or not.
+  //if correct, calls isCorrect, if wrong, calls isWrong. Calls disableClick() regardless
+  function selectAnswer(array) {
+    btn1.onclick = function () {
+      if (array[0].correct) {
+        isCorrect()
+      } else {
+        isWrong()
       }
-      btn2.onclick = function() {
-        if (array[1].correct) {
-          isCorrect()
-        } else {
-          isWrong()
-        }
+    }
+    btn2.onclick = function () {
+      if (array[1].correct) {
+        isCorrect()
+      } else {
+        isWrong()
       }
-      btn3.onclick = function() {
-        if (array[2].correct) {
-          isCorrect()
-        } else {
-          isWrong()
-        }
+    }
+    btn3.onclick = function () {
+      if (array[2].correct) {
+        isCorrect()
+      } else {
+        isWrong()
       }
-      btn4.onclick = function() {
-        if (array[3].correct) {
-          isCorrect()
-        } else {
-          isWrong()
-        }
+    }
+    btn4.onclick = function () {
+      if (array[3].correct) {
+        isCorrect()
+      } else {
+        isWrong()
       }
-      
     }
 
-function isCorrect() {
-  answerResult.classList.remove('hide')
-  resultMessage.innerText = "Correct";
-  disableClick()
-}
+  }
 
-function isWrong() {
-  answerResult.classList.remove('hide')
-  resultMessage.innerText = "Wrong";
-  disableClick()
-}
 
-function disableClick() {
-  btn1.setAttribute('disabled', true)
-  btn2.setAttribute('disabled', true)
-  btn3.setAttribute('disabled', true)
-  btn4.setAttribute('disabled', true)
-}
+  function isCorrect() {
+    answerResult.classList.remove('hide')
+    resultMessage.innerText = "Correct!";
+    disableClick()
+  }
+
+  function isWrong() {
+    answerResult.classList.remove('hide')
+    resultMessage.innerText = "Wrong!";
+    disableClick()
+  }
+
+  function disableClick() {
+    btn1.setAttribute('disabled', true)
+    btn2.setAttribute('disabled', true)
+    btn3.setAttribute('disabled', true)
+    btn4.setAttribute('disabled', true)
+    timeStopped = true;
+    resetGame()
+
+  }
+
+  function enableButton() {
+    btn1.disabled = false;
+    btn2.disabled = false;
+    btn3.disabled = false;
+    btn4.disabled = false;
+  }
+
+  function resetGame() {
+    currentQuestionIndex++;
+    setTimeout(function () {
+      enableButton()
+      timeStopped = false;
+      startGameTimer();
+      setQuestion()
+    }, 3000)
+  }
 
 }
 
 function setCorrect(order, i, list, array1) {
 
   array1 = [{
-    text: list[0],
-    correct: false
-  },
-  {
-    text: list[1],
-    correct: false
-  },
-  {
-    text:list[2],
-    correct: false
-  },
-  {
-    text: list[3],
-    correct: false
-  }
-];
+      text: list[0],
+      correct: false
+    },
+    {
+      text: list[1],
+      correct: false
+    },
+    {
+      text: list[2],
+      correct: false
+    },
+    {
+      text: list[3],
+      correct: false
+    }
+  ];
 
   db.collection("questions").doc(order[i])
     .onSnapshot(function (snap) {
@@ -229,6 +252,11 @@ function startGameTimer() {
       document.getElementById("game-timer").innerHTML = timeleft + " seconds remaining";
     }
     timeleft -= 1;
+
+    if (timeStopped) {
+      clearInterval(downloadTimer);
+      document.getElementById("game-timer").innerHTML = " ";
+    }
   }, 1000);
 }
 
