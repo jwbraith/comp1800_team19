@@ -20,9 +20,9 @@ app.use('/images', express.static(__dirname + '/images'));
 
 // SOCKET.IO
 io.on('connection', (client) => {
-  client.on('newGame', handleNewGame);
+  client.on('newRoom', handleNewRoom);
 
-  function handleNewGame() {
+  function handleNewRoom() {
     let roomName = createRoomCode();
     clientRooms[client.id] = roomName;
     client.emit('roomCode', roomName);
@@ -30,6 +30,31 @@ io.on('connection', (client) => {
     client.number = 1;
     console.log(client.id + " joined room " + roomName);
   }
+
+  client.on('joinRoom', handleJoinRoom);
+
+  function handleJoinRoom(roomCode) {
+    let room = io.sockets.adapter.rooms[roomCode];
+
+    let users;
+    if (room) {
+      users = room.sockets;
+    }
+    let numClients = 0;
+    if (users) {
+      numClients = Object.keys(users).length;
+    }
+    if (numClients === 0) {
+      client.emit('unkownRoom')
+      return;
+    } 
+    clientRooms[client.id] = roomCode;
+    console.log(clientRooms[0]);
+    client.join(roomCode);
+    client.number = 2;
+  }
+
+
   console.log("A user connected: " + client.id);
 })
 

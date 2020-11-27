@@ -5,22 +5,24 @@
     // })
   
 const roomCodeDisplay = document.getElementById("roomCodeDisplay");
+const roomCodeField = document.getElementById("roomCodeField");
 socket.on('roomCode', handleRoomCode);
 
-function createGame() {
-  socket.emit('newGame');
+function createRoom() {
+  socket.emit('newRoom');
   // instead of init, redirect to lobby room
 }
 
 
-function joinGame() {
-  const code = gameCode.value();
-  socket.emit('joinGame', code);
+function joinRoom() {
+  const code = roomCodeField.value;
+  socket.emit('joinRoom', code);
+  console.log("Tried to join room " + code);
   // instead of init, redirect to lobby room
 }
 
-function handleRoomCode(gameCode) {
-  roomCodeDisplay.innerHTML = gameCode;
+function handleRoomCode(roomCode) {
+  roomCodeDisplay.innerHTML = roomCode;
 }
 
 
