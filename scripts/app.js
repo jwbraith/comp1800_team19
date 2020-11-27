@@ -10,6 +10,7 @@ let resultMessage = document.getElementById('result-message')
 let answerResult = document.getElementById('answer-result')
 let score = 0;
 let timeStopped = false;
+let timeout = false;
 
 
 let btn1 = document.getElementById("btn-1");
@@ -42,7 +43,7 @@ function startGame() {
   countdown.classList.remove('grid')
   questionContainerElement.classList.remove('hide')
   scoreAndTimer.classList.remove('hide')
-  startGameTimer()
+  
   setQuestion()
 
 }
@@ -50,6 +51,9 @@ function startGame() {
 //sets the question by pulling out question from the database. --> will need to implement a function that pulls out randomly rather
 //than me doing it manually
 function setQuestion() {
+
+  startGameTimer()
+
   let questionOrder = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
   let shuffledOrder = shuffle(questionOrder)
   let currentQuestionIndex = 0;
@@ -92,6 +96,7 @@ function setQuestion() {
   //when one of the button is clicked, the function determines if it is correct or not.
   //if correct, calls isCorrect, if wrong, calls isWrong. Calls disableClick() regardless
   function selectAnswer(array) {
+    timeout = false;
     btn1.onclick = function () {
       if (array[0].correct) {
         isCorrect()
@@ -136,12 +141,19 @@ function setQuestion() {
     disableClick()
   }
 
+  function timeRanOut() {
+    answerResult.classList.remove('hide')
+    resultMessage.innerText = "TimeOut!";
+    disableClick()
+  }
+
   function disableClick() {
     btn1.setAttribute('disabled', true)
     btn2.setAttribute('disabled', true)
     btn3.setAttribute('disabled', true)
     btn4.setAttribute('disabled', true)
     timeStopped = true;
+    
     resetGame()
 
   }
@@ -157,10 +169,30 @@ function setQuestion() {
     currentQuestionIndex++;
     setTimeout(function () {
       enableButton()
+      answerResult.classList.add('hide')
       timeStopped = false;
       startGameTimer();
       setQuestion()
     }, 3000)
+  }
+
+  function startGameTimer() {
+    var timeleft = 15;
+    var downloadTimer = setInterval(function () {
+      if (timeleft <= 0) {
+        clearInterval(downloadTimer);
+        document.getElementById("game-timer").innerHTML = "Times Up!";
+        timeRanOut()
+      } else {
+        document.getElementById("game-timer").innerHTML = timeleft + " seconds remaining";
+      }
+      timeleft -= 1;
+  
+      if (timeStopped) {
+        clearInterval(downloadTimer);
+        document.getElementById("game-timer").innerHTML = " ";
+      }
+    }, 1000);
   }
 
 }
@@ -242,23 +274,6 @@ function createRoom() {
   })
 }
 
-function startGameTimer() {
-  var timeleft = 15;
-  var downloadTimer = setInterval(function () {
-    if (timeleft <= 0) {
-      clearInterval(downloadTimer);
-      document.getElementById("game-timer").innerHTML = "Times Up!";
-    } else {
-      document.getElementById("game-timer").innerHTML = timeleft + " seconds remaining";
-    }
-    timeleft -= 1;
-
-    if (timeStopped) {
-      clearInterval(downloadTimer);
-      document.getElementById("game-timer").innerHTML = " ";
-    }
-  }, 1000);
-}
 
 function Countdown() {
   var timeleft = 5;

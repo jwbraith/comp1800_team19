@@ -259,7 +259,7 @@ a:hover {
 .thought:before,
 .thought:after {
   content: "";
-  background-color:#E87EA1;
+  background-color: #E87EA1;
   border-radius: 50%;
   display: block;
   position: absolute;
@@ -285,7 +285,8 @@ a:hover {
     -5px 25px 0 -10px#E87EA1;
 
 }
-#answer-result{
+
+#answer-result {
   margin-top: 75px;
   font-size: 2em;
 }
@@ -297,10 +298,11 @@ a:hover {
   }
 
   .btn:hover {
-
+    box-shadow: 0 1px 3px 2px;
+    font-size: 1em;
   }
 
-  #questions-prompt{
+  #questions-prompt {
     font-size: 1.15em;
   }
 
@@ -312,7 +314,7 @@ a:hover {
     font-size: 1em;
   }
 
-  #answer-result{
+  #answer-result {
     font-size: 1em;
   }
 
