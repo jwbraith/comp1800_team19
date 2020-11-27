@@ -85,7 +85,7 @@ function setQuestion() {
       questionArray = setCorrect(shuffledOrder, currentQuestionIndex, shuffledQuestions, questionArray)
 
       //displays question
-      questionElement.innerText = snap.data().question;
+      questionElement.innerText = "Question " + (currentQuestionIndex + 1) + ": " + snap.data().question;
 
       //used for debugging
       console.log(questionArray)
