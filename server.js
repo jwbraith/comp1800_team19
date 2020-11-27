@@ -20,39 +20,42 @@ app.use('/images', express.static(__dirname + '/images'));
 
 // SOCKET.IO
 io.on('connection', (client) => {
-  client.on('newRoom', handleNewRoom);
 
+  client.on('newRoom', handleNewRoom);
   function handleNewRoom() {
     let roomName = createRoomCode();
     clientRooms[client.id] = roomName;
-    // client.emit('roomCode', roomName);
+    client.emit('roomCode', roomName);
     client.join(roomName);
     client.number = 1;
-    console.log(client.id + " joined room " + roomName);
+    console.log(client.id + " joined room " + clientRooms[client.id]);
   }
 
   client.on('joinRoom', handleJoinRoom);
 
   function handleJoinRoom(roomCode) {
     let room = io.sockets.adapter.rooms[roomCode];
-
-    let users;
+    console.log(room);
+    let allUsers;
     if (room) {
-      users = room.sockets;
+      console.log("room was true");
+      allUsers = room.sockets;
     }
+    console.log(allUsers);
     let numClients = 0;
-    if (users) {
-      numClients = Object.keys(users).length;
+    if (allUsers) {
+      numClients = Object.keys(allUsers).length;
     }
     if (numClients === 0) {
-      client.emit('unkownRoom')
+      client.emit('unknownRoom', room)
       return;
-    } 
+    }
     // pair this client.id key with the roomCode value in the 
     // clientRooms object
     clientRooms[client.id] = roomCode;
-    console.log(clientRooms[0]);
+    console.log("got to here");
     client.join(roomCode);
+    io.to(roomCode).emit('new arrival', client.id);
     client.number = 2;
   }
 
@@ -67,8 +70,8 @@ app.get('/', (req, res) => {
 })
 
 app.get('/lobby.html', (req, res) => {
-  client.emit('roomCode', clientRooms[client.id]);
   res.sendFile(__dirname + '/lobby.html');
+
 })
 
 app.use((req, res) => {
