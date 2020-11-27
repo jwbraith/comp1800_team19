@@ -59,8 +59,6 @@ function setQuestion() {
   startGameTimer()
 
 
-  
-
   //for now! --> will have to change later if we expand on this project later!
 
   db.collection("questions").doc(shuffledOrder[currentQuestionIndex])
@@ -128,7 +126,6 @@ function setQuestion() {
         isWrong()
       }
     }
-
   }
 
 
@@ -177,7 +174,6 @@ function setQuestion() {
       enableButton()
       answerResult.classList.add('hide')
       timeStopped = false;
-      startGameTimer();
       setQuestion()
     }, 3500)
   }
@@ -189,6 +185,7 @@ function setQuestion() {
         clearInterval(downloadTimer);
         document.getElementById("game-timer").innerHTML = "Times Up!";
         timeRanOut()
+
       } else {
         document.getElementById("game-timer").innerHTML = timeleft + " seconds remaining";
       }
@@ -294,5 +291,6 @@ function Countdown() {
     timeleft -= 1;
   }, 1000);
 }
+
 
 Countdown()
