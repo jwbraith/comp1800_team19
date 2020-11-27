@@ -25,7 +25,7 @@ io.on('connection', (client) => {
   function handleNewRoom() {
     let roomName = createRoomCode();
     clientRooms[client.id] = roomName;
-    client.emit('roomCode', roomName);
+    // client.emit('roomCode', roomName);
     client.join(roomName);
     client.number = 1;
     console.log(client.id + " joined room " + roomName);
@@ -48,6 +48,8 @@ io.on('connection', (client) => {
       client.emit('unkownRoom')
       return;
     } 
+    // pair this client.id key with the roomCode value in the 
+    // clientRooms object
     clientRooms[client.id] = roomCode;
     console.log(clientRooms[0]);
     client.join(roomCode);
@@ -62,6 +64,11 @@ io.on('connection', (client) => {
 //APP GETS
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/play_with.html");
+})
+
+app.get('/lobby.html', (req, res) => {
+  client.emit('roomCode', clientRooms[client.id]);
+  res.sendFile(__dirname + '/lobby.html');
 })
 
 app.use((req, res) => {

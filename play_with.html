@@ -85,9 +85,9 @@
 
 
       <!-- <a id="inviteButton" href="invite.html"> -->
-      <button id="createButton" type="button" class="btn-primary btn-lg" onclick="createRoom()">Create Room</button>
+      <a href="lobby.html" target="_blank" rel="noopener noreferrer"><button id="createButton" type="button" class="btn-primary btn-lg" onclick="createRoom()">Create Room</button></a>
       <button id="joinButton" type="button" class="btn-primary btn-lg" onclick="joinRoom()">Join Room</button>
-      <h1>Your Room Code is: <span id="roomCodeDisplay"></span></h1>
+      
       <input type="text" name="roomCodeField" id="roomCodeField">
       <!-- </a> -->
 
@@ -111,7 +111,7 @@
     <script>
       const socket = io();
     </script>
-    <script src="scripts/play_with.js"></script>
+    <script src="scripts/client.js"></script>
 
     <!-- <script src="scripts/play_with.js"></script> -->
 

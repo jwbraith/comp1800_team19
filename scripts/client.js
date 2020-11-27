@@ -3,10 +3,15 @@
     // socket.on('chat message', function (msg) {
     //   // $('#messages').append($('<li>').text(msg));
     // })
-  
+
+    
+//this bit displays the room code in lobby.html
 const roomCodeDisplay = document.getElementById("roomCodeDisplay");
-const roomCodeField = document.getElementById("roomCodeField");
 socket.on('roomCode', handleRoomCode);
+
+
+const roomCodeField = document.getElementById("roomCodeField");
+
 
 function createRoom() {
   socket.emit('newRoom');
