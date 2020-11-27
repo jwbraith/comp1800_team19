@@ -7,6 +7,7 @@ const io = require('socket.io')(server);
 const $ = require('jquery');
 const fs = require('fs');
 const { dirname } = require('path');
+const { createRoomCode } = require('./scripts/utilities.js')
 
 const state = {};
 const clientRooms = {};
@@ -22,8 +23,12 @@ io.on('connection', (client) => {
   client.on('newGame', handleNewGame);
 
   function handleNewGame() {
-    let roomName = "takipono";
+    let roomName = createRoomCode();
     clientRooms[client.id] = roomName;
+    client.emit('roomCode', roomName);
+    client.join(roomName);
+    client.number = 1;
+    console.log(client.id + " joined room " + roomName);
   }
   console.log("A user connected: " + client.id);
 })
