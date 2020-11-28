@@ -1,5 +1,9 @@
 module.exports = {
   createRoomCode,
+  retrieveLobby: function () {
+    console.log("called: retrieve Lobby");
+    return lobby;
+  }
 }
 
 function createRoomCode() {
@@ -18,4 +22,7 @@ function createRoomCode() {
   let roomCode = "" + digit1 + digit2 + digit3 + digit4;
   return roomCode;
 }
+
+let lobby = "<button id='readyButton' type='button' class='btn-warning'><a href='game.html' class='text-dark'>Players Ready</a></button></div><h1>Your Room Code is: <span id='roomCodeDisplay'></span></h1><div id='playersGrid' class='bg-primary text-dark'><div id='playerCount'>Number of Players: </div><div class='playerIcon'></div><div class='playerName'>Frederico Fellini</div><div class='playerIcon'></div><div class='playerName'>Allison Handstand</div><div class='playerIcon'></div><div class='playerName'>Jurgen Habermas</div></div>";
+
 

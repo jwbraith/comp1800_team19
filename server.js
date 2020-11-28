@@ -7,7 +7,7 @@ const io = require('socket.io')(server);
 const $ = require('jquery');
 const fs = require('fs');
 const { dirname } = require('path');
-const { createRoomCode } = require('./scripts/utilities.js')
+const utilities = require('./scripts/utilities.js')
 
 const state = {};
 const clientRooms = {};
@@ -23,16 +23,15 @@ io.on('connection', (client) => {
 
   client.on('newRoom', handleNewRoom);
   function handleNewRoom() {
-    let roomName = createRoomCode();
+    let roomName = utilities.createRoomCode();
     clientRooms[client.id] = roomName;
-    client.emit('roomCode', roomName);
+    // client.emit('roomCode', roomName);
     client.join(roomName);
     client.number = 1;
     console.log(client.id + " joined room " + clientRooms[client.id]);
   }
 
   client.on('joinRoom', handleJoinRoom);
-
   function handleJoinRoom(roomCode) {
     let room = io.sockets.adapter.rooms[roomCode];
     console.log(room);
@@ -70,8 +69,26 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + "/play_with.html");
 })
 
-app.get('/lobby.html', (req, res) => {
-  res.sendFile(__dirname + '/lobby.html');
+app.get('/create-GET', (req, res) => {
+  let entranceType = req.query['entrance'];
+  let host = req.query['creator'];
+  if (entranceType == "create") {
+    res.setHeader('Content-Type', 'text/html');
+    let lobby = utilities.retrieveLobby();
+    res.send({
+      room: clientRooms[host],
+      lobbyHTML: lobby
+    });
+  }
+})
+
+app.get('/join-GET', (req, res) => {
+  let entranceType = req.query['entrance'];
+  if (entranceType == "join") {
+    res.setHeader('Content-Type', 'text/html');
+    lobby = utilities.retrieveLobby();
+    res.send(lobby);
+  }
 })
 
 app.use((req, res) => {

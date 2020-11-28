@@ -62,36 +62,34 @@
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
+
+    <!-- Header Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href=""><img src="images/nav-logo.png" class="logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">my data</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">my profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">login/signup</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
     <div id="grid">
-      <!-- Header Navigation Bar -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href=""><img src="images/nav-logo.png" class="logo"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">my data</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="profile.html">my profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="login.html">login/signup</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-
-      <a href="lobby.html" rel="noopener noreferrer"><button id="createButton" type="button"
-          class="btn-primary btn-lg">Create Room</button></a>
-      <a href="lobby.html"><button id="joinButton" type="button" class="btn-primary btn-lg" onclick="joinRoom()">Join
-          Room</button></a>
+      <button id="createButton" type="button" class="btn-primary btn-lg">Create Room</button>
+      <button id="joinButton" type="button" class="btn-primary btn-lg">Join
+        Room</button>
 
       <input type="text" name="roomCodeField" id="roomCodeField">
-      <!-- </a> -->
 
 
     </div>
