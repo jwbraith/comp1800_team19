@@ -6,6 +6,10 @@ const scoreAndTimer = document.getElementById('score-timer-container');
 const answerButtons = document.getElementById('answer-btn');
 const timer = document.getElementById('timer');
 const gameEndContainer = document.getElementById('results-container')
+const userIdSpan = document.getElementById('user-id')
+const userScoreSpan = document.getElementById('user-score')
+const lobbyButton = document.getElementById('lobby-btn');
+const mainPageButton = document.getElementById('main-btn');
 let scoreContainer = document.getElementById('score-counter');
 let resultMessage = document.getElementById('result-message');
 let answerResult = document.getElementById('answer-result');
@@ -204,6 +208,19 @@ function setQuestion() {
     questionContainerElement.classList.add('hide')
     scoreAndTimer.classList.add('hide')
     gameEndContainer.classList.remove('hide')
+    firebase.auth().onAuthStateChanged(function (user) {
+      db.collection("users").doc(user.uid)
+        .onSnapshot(function (snap) {
+          userScoreSpan.innerText = snap.data().score
+          userIdSpan.innerText = user.displayName
+      })
+    })
+    lobbyButton.onclick = function () {
+      window.location.href = "lobby.html"
+    }
+    mainPageButton.onclick = function () {
+      window.location.href = "main.html"
+    }
   }
 
   function startGameTimer() {
