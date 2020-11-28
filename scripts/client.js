@@ -11,6 +11,7 @@ const roomCodeField = document.getElementById("roomCodeField");
 
 function createRoom() {
   socket.emit('newRoom');
+  // app.get('/lobb')
   // instead of init, redirect to lobby room
 }
 

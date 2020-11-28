@@ -71,7 +71,6 @@ app.get('/', (req, res) => {
 
 app.get('/lobby.html', (req, res) => {
   res.sendFile(__dirname + '/lobby.html');
-
 })
 
 app.use((req, res) => {
