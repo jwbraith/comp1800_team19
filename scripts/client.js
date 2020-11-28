@@ -11,24 +11,25 @@ socket.on('client count', displayClientCount);
 // that indicate whether we are creating or joining a room
 $(document).ready(function () {
   $('#createButton').on('click', function () {
+    console.log('clicked create button');
     socket.emit('newRoom');
   })
 
   $('#createButton').on('click', function () {
     console.log('clicked create button');
-    // socket.emit('newRoom');
     $.ajax({
       url: "/create-GET",
-      datatype: "html",
+      datatype: "json",
       type: "GET",
       data: {
         entrance: "create",
         creator: socket.id,
       },
       success: function (data) {
-        console.log(data);
-        // $('#grid').html(data[1]);
-        // window.location.href = "/lobby.html";
+        console.log(data['room']);
+        $('#grid').html(data["lobbyHTML"]);
+        $('#roomCodeDisplay').text(data['room']);
+        $('#player1').text(socket.id);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("ERROR: ", jqXHR, textStatus, errorThrown);
@@ -41,12 +42,16 @@ $(document).ready(function () {
 
     $.ajax({
       url: "/join-GET",
-      datatype: "html",
+      datatype: "json",
       type: "GET",
-      data: { entrance: "join" },
+      data: {
+        entrance: "join",
+        entrant: socket.id,
+      },
       success: function (data) {
         console.log("join-GET: ", data);
-        $('#grid').html(data);
+        $('#grid').html(data['lobbyHTML']);
+        $('#roomCodeDisplay').text(data['room']);
         // window.location.href = "/lobby.html";
       },
       error: function (jqXHR, textStatus, errorThrown) {

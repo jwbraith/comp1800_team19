@@ -73,7 +73,7 @@ app.get('/create-GET', (req, res) => {
   let entranceType = req.query['entrance'];
   let host = req.query['creator'];
   if (entranceType == "create") {
-    res.setHeader('Content-Type', 'text/html');
+    res.setHeader('Content-Type', 'application/json');
     let lobby = utilities.retrieveLobby();
     res.send({
       room: clientRooms[host],
@@ -84,10 +84,14 @@ app.get('/create-GET', (req, res) => {
 
 app.get('/join-GET', (req, res) => {
   let entranceType = req.query['entrance'];
+  let guest = req.query['entrant'];
   if (entranceType == "join") {
-    res.setHeader('Content-Type', 'text/html');
-    lobby = utilities.retrieveLobby();
-    res.send(lobby);
+    res.setHeader('Content-Type', 'application/json');
+    let lobby = utilities.retrieveLobby();
+    res.send({
+      room: clientRooms[guest],
+      lobbyHTML: lobby
+    })
   }
 })
 
