@@ -56,6 +56,7 @@ io.on('connection', (client) => {
     console.log("got to here");
     client.join(roomCode);
     io.to(roomCode).emit('new arrival', client.id);
+    io.to(roomCode).emit('client count', room.sockets);
     client.number = 2;
   }
 

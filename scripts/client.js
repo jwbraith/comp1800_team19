@@ -4,6 +4,7 @@ const roomCodeDisplay = document.getElementById("roomCodeDisplay");
 socket.on('roomCode', handleRoomCode);
 socket.on('unknownRoom', handleUnknownRoom);
 socket.on('new arrival', handleNewArrival);
+socket.on('client count', displayClientCount);
 
 
 const roomCodeField = document.getElementById("roomCodeField");
@@ -11,14 +12,14 @@ const roomCodeField = document.getElementById("roomCodeField");
 
 function createRoom() {
   socket.emit('newRoom');
-  // instead of init, redirect to lobby room
+  // redirectJoinLobby();
 }
 
 function joinRoom() {
   const code = roomCodeField.value;
   socket.emit('joinRoom', code);
   console.log("Tried to join room " + code);
-  // instead of init, redirect to lobby room
+  // redirectJoinLobby();
 }
 
 function handleNewArrival(arrival) {
@@ -31,6 +32,17 @@ function handleUnknownRoom(room) {
 
 function handleRoomCode(roomCode) {
   roomCodeDisplay.innerHTML = roomCode;
+}
+
+function displayClientCount(clients) {
+  console.log(clients);
+}
+
+function redirectJoinLobby() {
+  console.log("redirect function called");
+  setTimeout(()=> {
+    window.location.replace('lobby.html')
+  }, 2000);
 }
 
 
