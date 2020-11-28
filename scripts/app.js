@@ -11,6 +11,7 @@ let answerResult = document.getElementById('answer-result')
 let score = 0;
 let timeStopped = false;
 let timeout = false;
+let currentQuestionIndex = 0;
 
 
 let btn1 = document.getElementById("btn-1");
@@ -36,6 +37,9 @@ let questionArray = [{
   }
 ];
 
+let questionOrder = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
+let shuffledOrder = shuffle(questionOrder)
+
 
 function startGame() {
   console.log('Game Started')
@@ -43,7 +47,7 @@ function startGame() {
   countdown.classList.remove('grid')
   questionContainerElement.classList.remove('hide')
   scoreAndTimer.classList.remove('hide')
-  
+
   setQuestion()
 
 }
@@ -54,9 +58,6 @@ function setQuestion() {
 
   startGameTimer()
 
-  let questionOrder = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
-  let shuffledOrder = shuffle(questionOrder)
-  let currentQuestionIndex = 0;
 
   //for now! --> will have to change later if we expand on this project later!
 
@@ -82,14 +83,14 @@ function setQuestion() {
       questionArray = setCorrect(shuffledOrder, currentQuestionIndex, shuffledQuestions, questionArray)
 
       //displays question
-      questionElement.innerText = snap.data().question;
+      questionElement.innerText = "Question " + (currentQuestionIndex + 1) + ": " + snap.data().question;
 
       //used for debugging
       console.log(questionArray)
 
 
       selectAnswer(questionArray)
-      scoreContainer.innerText = score;
+      
     })
 
   //There may be a more efficient way of doing this function
@@ -125,7 +126,6 @@ function setQuestion() {
         isWrong()
       }
     }
-
   }
 
 
@@ -133,6 +133,8 @@ function setQuestion() {
     answerResult.classList.remove('hide')
     resultMessage.innerText = "Correct!";
     disableClick()
+    score++
+    scoreContainer.innerText = score;
   }
 
   function isWrong() {
@@ -153,7 +155,7 @@ function setQuestion() {
     btn3.setAttribute('disabled', true)
     btn4.setAttribute('disabled', true)
     timeStopped = true;
-    
+
     resetGame()
 
   }
@@ -167,13 +169,13 @@ function setQuestion() {
 
   function resetGame() {
     currentQuestionIndex++;
+    
     setTimeout(function () {
       enableButton()
       answerResult.classList.add('hide')
       timeStopped = false;
-      startGameTimer();
       setQuestion()
-    }, 3000)
+    }, 3500)
   }
 
   function startGameTimer() {
@@ -183,11 +185,12 @@ function setQuestion() {
         clearInterval(downloadTimer);
         document.getElementById("game-timer").innerHTML = "Times Up!";
         timeRanOut()
+
       } else {
         document.getElementById("game-timer").innerHTML = timeleft + " seconds remaining";
       }
       timeleft -= 1;
-  
+
       if (timeStopped) {
         clearInterval(downloadTimer);
         document.getElementById("game-timer").innerHTML = " ";
@@ -288,5 +291,6 @@ function Countdown() {
     timeleft -= 1;
   }, 1000);
 }
+
 
 Countdown()
