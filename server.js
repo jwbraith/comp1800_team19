@@ -91,6 +91,7 @@ io.on('connection', (client) => {
 
   client.on('sendToGame', handleSend);
   function handleSend(roomCode) {
+    console.log("handling send");
     io.to(roomCode).emit('startGame');
   }
 
@@ -133,9 +134,8 @@ app.get('/join-GET', (req, res) => {
 })
 
 app.get('/start-GET', (req, res) => {
-  res.setHeader('Content-Type', 'text/html');
-  let doc = fs.readFile(__dirname + "/game.html")
-  res.sendFile(doc);
+  res.setHeader('Content-Type', "text/html");
+  res.sendFile(__dirname + "/game.html");
 })
 
 

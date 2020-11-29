@@ -70,15 +70,13 @@ $(document).ready(function () {
     })
   })
 
-  $('#readyButton').on('click', function () {
-    let roomCode = $('#roomCodeDisplay').text();
-    console.log("clicked ready button");
-    socket.emit('sendToGame', roomCode);
-  })
-
-
 })
 
+function initGame() {
+  let roomCode = $('#roomCodeDisplay').text();
+  console.log("clicked ready button");
+  socket.emit('sendToGame', roomCode);
+}
 const roomCodeField = document.getElementById("roomCodeField");
 
 
@@ -133,6 +131,7 @@ function handleGameStart() {
       },
       success: function (data) {
         console.log("game start: ", data);
+        $('body').html(data);
 
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -152,17 +151,17 @@ function redirectJoinLobby() {
     window.location.replace('lobby.html')
   }, 2000);
 }
-$(document).ready(function () {
-  setInterval(function updatePlayerCount() {
-    let roomCode = $('#roomCodeDisplay').text();
-    socket.emit('reqPlayerCount', roomCode);
-  }, 1000);
+// $(document).ready(function () {
+//   setInterval(function updatePlayerCount() {
+//     let roomCode = $('#roomCodeDisplay').text();
+//     socket.emit('reqPlayerCount', roomCode);
+//   }, 1000);
 
-  setInterval(function updatePlayerList() {
-    let roomCode = $('#roomCodeDisplay').text();
-    socket.emit('reqPlayerNames', roomCode);
-  }, 2000);
-})
+//   setInterval(function updatePlayerList() {
+//     let roomCode = $('#roomCodeDisplay').text();
+//     socket.emit('reqPlayerNames', roomCode);
+//   }, 2000);
+// })
 
 
 
