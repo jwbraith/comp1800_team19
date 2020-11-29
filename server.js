@@ -25,6 +25,7 @@ io.on('connection', (client) => {
   function handleNewRoom() {
     let roomName = utilities.createRoomCode();
     clientRooms[client.id] = roomName;
+    console.log(clientRooms);
     client.join(roomName);
     client.number = 1;
     console.log(client.id + " joined room " + clientRooms[client.id]);
@@ -32,12 +33,16 @@ io.on('connection', (client) => {
 
   client.on('joinRoom', handleJoinRoom);
   function handleJoinRoom(roomCode) {
-    let room = io.sockets.adapter.rooms[roomCode];
-    console.log(room);
+    console.log(roomCode);
+
+    let room = io.nsps['/'].adapter.rooms[roomCode];
+    console.log(client.id + " tried to join " + room);
     let allUsers;
     if (room) {
       console.log("room was true");
       allUsers = room.sockets;
+    } else {
+      console.log("room was false");
     }
     console.log(allUsers);
     let numClients = 0;
@@ -53,11 +58,36 @@ io.on('connection', (client) => {
     clientRooms[client.id] = roomCode;
     console.log("got to here");
     client.join(roomCode);
-    io.to(roomCode).emit('new arrival', client.id);
-    io.to(roomCode).emit('client count', room.sockets);
+    client.to(roomCode).emit('new arrival', client.id);
     client.number = 2;
   }
 
+  client.on('reqPlayerCount', returnPlayerCount);
+  function returnPlayerCount(roomCode) {
+    let room = io.nsps['/'].adapter.rooms[roomCode];
+    let allUsers;
+    if (room) {
+
+      allUsers = room.sockets;
+    }
+    let numClients = 0;
+    if (allUsers) {
+      numClients = Object.keys(allUsers).length;
+    }
+    client.emit('numClients', numClients);
+  }
+
+  client.on('reqPlayerNames', returnPlayerNames);
+  function returnPlayerNames(roomCode) {
+    let room = io.nsps['/'].adapter.rooms[roomCode];
+    let allUsers;
+    if (room) {
+      console.log(room.sockets);
+      console.log(room.sockets[0]);
+      allUsers = room.sockets;
+    }
+    client.emit('userList', allUsers);
+  }
 
   console.log("A user connected: " + client.id);
 })
@@ -69,13 +99,14 @@ app.get('/', (req, res) => {
 })
 
 app.get('/create-GET', (req, res) => {
+  // let roomCode = utilities.createRoomCode();
   let entranceType = req.query['entrance'];
   let host = req.query['creator'];
   if (entranceType == "create") {
     res.setHeader('Content-Type', 'application/json');
     let lobby = utilities.retrieveLobby();
     res.send({
-      roomlist: clientRooms,
+      room: clientRooms[host],
       lobbyHTML: lobby
     });
   }
@@ -93,6 +124,8 @@ app.get('/join-GET', (req, res) => {
     })
   }
 })
+
+
 
 app.use((req, res) => {
   res.status(404).send("Nothing found, 404");

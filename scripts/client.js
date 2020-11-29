@@ -4,7 +4,8 @@ const roomCodeDisplay = document.getElementById("roomCodeDisplay");
 socket.on('roomCode', handleRoomCode);
 socket.on('unknownRoom', handleUnknownRoom);
 socket.on('new arrival', handleNewArrival);
-socket.on('client count', displayClientCount);
+socket.on('numClients', displayClientCount);
+socket.on('userList', handleUserList);
 
 
 // the goal with this jquery is to include info in server requests
@@ -26,13 +27,14 @@ $(document).ready(function () {
         creator: socket.id,
       },
       success: function (data) {
-        console.log(data['roomList']);
-        let allRooms = data['roomList'];
+        console.log(data['room']);
         let yourID = socket.id;
-        let yourRoom = allRooms[yourID];
+        console.log(yourID);
+        let yourRoom = data['room'];
         $('#grid').html(data["lobbyHTML"]);
         $('#roomCodeDisplay').text(yourRoom);
         $('#playerList').append('<li>' + socket.id + "</li>");
+        $('#playerCount').text('Number of Players: ' + 1);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("ERROR: ", jqXHR, textStatus, errorThrown);
@@ -42,7 +44,9 @@ $(document).ready(function () {
 
   $('#joinButton').on('click', function () {
     console.log('clicked join button');
-    let code = $('#roomCodeField').val;
+    console.log($('#roomCodeField').val());
+    let code = $('#roomCodeField').val();
+    console.log(code);
     socket.emit('joinRoom', code);
     console.log("Tried to join room " + code);
     $.ajax({
@@ -64,6 +68,14 @@ $(document).ready(function () {
       }
     })
   })
+
+  $('#readyButton').on('click', function () {
+    let roomCode = $('#roomCodeDisplay').text();
+    console.log("clicked ready button");
+    socket.emit('sendToGame', roomCode);
+  })
+
+
 })
 
 const roomCodeField = document.getElementById("roomCodeField");
@@ -94,8 +106,19 @@ function handleRoomCode(roomCode) {
 }
 
 function displayClientCount(clients) {
-  console.log(clients);
+  $('#playerCount').text('Number of Players: ' + clients);
 }
+
+function handleUserList(clients) {
+  let list = Object.keys(clients);
+  let listToPutInPlace = "";
+  console.log(Object.keys(clients));
+  for (let i = 0; i < list.length; i++) {
+    listToPutInPlace += "<li class='playerName'>" + list[i] + "</li>";
+  };
+  $('#playerList').replaceWith(listToPutInPlace);
+}
+
 
 
 
@@ -106,6 +129,18 @@ function redirectJoinLobby() {
     window.location.replace('lobby.html')
   }, 2000);
 }
+$(document).ready(function () {
+  setInterval(function updatePlayerCount() {
+    let roomCode = $('#roomCodeDisplay').text();
+    socket.emit('reqPlayerCount', roomCode);
+  }, 1000);
+
+  setInterval(function updatePlayerList() {
+    let roomCode = $('#roomCodeDisplay').text();
+    socket.emit('reqPlayerNames', roomCode);
+  }, 2000);
+})
+
 
 
 let playerNumber;
