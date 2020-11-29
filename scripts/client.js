@@ -26,10 +26,13 @@ $(document).ready(function () {
         creator: socket.id,
       },
       success: function (data) {
-        console.log(data['room']);
+        console.log(data['roomList']);
+        let allRooms = data['roomList'];
+        let yourID = socket.id;
+        let yourRoom = allRooms[yourID];
         $('#grid').html(data["lobbyHTML"]);
-        $('#roomCodeDisplay').text(data['room']);
-        $('#player1').text(socket.id);
+        $('#roomCodeDisplay').text(yourRoom);
+        $('#playerList').append('<li>' + socket.id + "</li>");
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("ERROR: ", jqXHR, textStatus, errorThrown);
@@ -39,7 +42,9 @@ $(document).ready(function () {
 
   $('#joinButton').on('click', function () {
     console.log('clicked join button');
-
+    let code = $('#roomCodeField').val;
+    socket.emit('joinRoom', code);
+    console.log("Tried to join room " + code);
     $.ajax({
       url: "/join-GET",
       datatype: "json",
@@ -52,7 +57,7 @@ $(document).ready(function () {
         console.log("join-GET: ", data);
         $('#grid').html(data['lobbyHTML']);
         $('#roomCodeDisplay').text(data['room']);
-        // window.location.href = "/lobby.html";
+        $('#playerList').append('<li>' + socket.id + '</li>');
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("ERROR: ", jqXHR, textStatus, errorThrown);

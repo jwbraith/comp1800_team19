@@ -23,6 +23,6 @@ function createRoomCode() {
   return roomCode;
 }
 
-let lobby = "<button id='readyButton' type='button' class='btn-warning'><a href='game.html' class='text-dark'>Players Ready</a></button></div><h1>Your Room Code is: <span id='roomCodeDisplay'></span></h1><div id='playersGrid' class='bg-primary text-dark'><div id='playerCount'>Number of Players: </div><div class='playerIcon'></div><div class='playerName' id='player1'>Frederico Fellini</div><div class='playerIcon'></div><div class='playerName'>Allison Handstand</div><div class='playerIcon'></div><div class='playerName'>Jurgen Habermas</div></div>";
+let lobby = "<button id='readyButton' type='button' class='btn-warning'><a href='game.html' class='text-dark'>Players Ready</a></button></div><h1>Your Room Code is: <span id='roomCodeDisplay'></span></h1><div id='playersGrid' class='bg-primary text-dark'><div id='playerCount'>Number of Players: </div><ul id='playerList'></ul></div>";
 
 

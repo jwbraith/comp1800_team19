@@ -25,7 +25,6 @@ io.on('connection', (client) => {
   function handleNewRoom() {
     let roomName = utilities.createRoomCode();
     clientRooms[client.id] = roomName;
-    // client.emit('roomCode', roomName);
     client.join(roomName);
     client.number = 1;
     console.log(client.id + " joined room " + clientRooms[client.id]);
@@ -76,7 +75,7 @@ app.get('/create-GET', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     let lobby = utilities.retrieveLobby();
     res.send({
-      room: clientRooms[host],
+      roomlist: clientRooms,
       lobbyHTML: lobby
     });
   }
