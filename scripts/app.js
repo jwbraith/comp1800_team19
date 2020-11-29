@@ -1,14 +1,19 @@
-const countdown = document.getElementById('counter-container')
-const questionContainerElement = document.getElementById('questions-container')
-const startButton = document.getElementById('start-button')
-const questionElement = document.getElementById('questions-prompt')
-const scoreAndTimer = document.getElementById('score-timer-container')
-const answerButtons = document.getElementById('answer-btn')
-const timer = document.getElementById('timer')
-let scoreContainer = document.getElementById('score-counter')
-let resultMessage = document.getElementById('result-message')
-let answerResult = document.getElementById('answer-result')
-let score = 0;
+const countdown = document.getElementById('counter-container');
+const questionContainerElement = document.getElementById('questions-container');
+const startButton = document.getElementById('start-button');
+const questionElement = document.getElementById('questions-prompt');
+const scoreAndTimer = document.getElementById('score-timer-container');
+const answerButtons = document.getElementById('answer-btn');
+const timer = document.getElementById('timer');
+const gameEndContainer = document.getElementById('results-container')
+const userIdSpan = document.getElementById('user-id')
+const userScoreSpan = document.getElementById('user-score')
+const lobbyButton = document.getElementById('lobby-btn');
+const mainPageButton = document.getElementById('main-btn');
+let scoreContainer = document.getElementById('score-counter');
+let resultMessage = document.getElementById('result-message');
+let answerResult = document.getElementById('answer-result');
+let currentScore = 0;
 let timeStopped = false;
 let timeout = false;
 let currentQuestionIndex = 0;
@@ -90,7 +95,7 @@ function setQuestion() {
 
 
       selectAnswer(questionArray)
-      
+
     })
 
   //There may be a more efficient way of doing this function
@@ -133,8 +138,22 @@ function setQuestion() {
     answerResult.classList.remove('hide')
     resultMessage.innerText = "Correct!";
     disableClick()
-    score++
-    scoreContainer.innerText = score;
+    currentScore++
+    scoreContainer.innerText = currentScore;
+
+    firebase.auth().onAuthStateChanged(function (user) {
+      return db.collection("users").doc(user.uid).update({
+          score: currentScore
+        })
+        .then(function () {
+          console.log("Score updated successfully");
+        })
+        .catch(function (error) {
+          // The document probably doesn't exist.
+          console.error("Error updating score: ", error);
+        });
+    })
+
   }
 
   function isWrong() {
@@ -156,7 +175,14 @@ function setQuestion() {
     btn4.setAttribute('disabled', true)
     timeStopped = true;
 
-    resetGame()
+    if (currentQuestionIndex + 1 >= shuffledOrder.length) {
+      setTimeout(function () {
+        finishGame()
+      }, 3000)
+    } else {
+      resetGame()
+    }
+
 
   }
 
@@ -169,13 +195,32 @@ function setQuestion() {
 
   function resetGame() {
     currentQuestionIndex++;
-    
+
     setTimeout(function () {
       enableButton()
       answerResult.classList.add('hide')
       timeStopped = false;
       setQuestion()
     }, 3500)
+  }
+
+  function finishGame() {
+    questionContainerElement.classList.add('hide')
+    scoreAndTimer.classList.add('hide')
+    gameEndContainer.classList.remove('hide')
+    firebase.auth().onAuthStateChanged(function (user) {
+      db.collection("users").doc(user.uid)
+        .onSnapshot(function (snap) {
+          userScoreSpan.innerText = snap.data().score
+          userIdSpan.innerText = user.displayName
+      })
+    })
+    lobbyButton.onclick = function () {
+      window.location.href = "lobby.html"
+    }
+    mainPageButton.onclick = function () {
+      window.location.href = "main.html"
+    }
   }
 
   function startGameTimer() {
@@ -197,6 +242,7 @@ function setQuestion() {
       }
     }, 1000);
   }
+
 
 }
 

@@ -291,6 +291,31 @@ a:hover {
   font-size: 2em;
 }
 
+#scoreboard {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 10vh;
+} 
+
+#score-results {
+  background-color: #EBB3A9;
+  text-align: center;
+  margin: 30px 10%;
+  margin-top: 5vh;
+  padding: 10vh;
+  padding-top: 3vh;
+  box-shadow: 3px 3px #a0a0a0;
+  border-radius: 10px;
+  font-size: 1.5em;
+  border: solid 3px #555555;
+}
+
+#return-button {
+  text-align: center;
+  margin-top: 5vh;
+}
+
+
 @media screen and (max-width: 700px) {
   .btn {
     font-size: 0.9em;

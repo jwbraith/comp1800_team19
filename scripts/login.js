@@ -1,7 +1,7 @@
 
 
 (function() {
-    
+    const db = firebase.firestore();
     const textEmail = document.getElementById("textEmail");
     const textPassword = document.getElementById("textPassword");
     const loginButton = document.getElementById("login-btn");
@@ -26,16 +26,28 @@
         const promise = auth.createUserWithEmailAndPassword(email, pass)
 
         promise.catch(e => console.log(e.message));
+
+        
+
+    
     });
 
-    firebase.auth().onAuthStateChanged(firebaseUser => {
-        if(firebaseUser) {
-            console.log(firebaseUser);
+    firebase.auth().onAuthStateChanged(user => {
+        if(user) {
+            console.log(user);
             loginButton.classList.add('hide');
             signupButton.classList.add('hide');
             textPassword.classList.add('hide');
             textEmail.classList.add('hide');
-            window.location.href = "main.html"
+
+            db.collection("users").doc(user.uid).set({
+                email: textEmail.value,
+                score: 0
+            })
+
+            setTimeout(function() {
+                window.location.href = "main.html"
+            }, 500)
         } else {
             console.log('not logged in')
 
@@ -43,3 +55,4 @@
     })
 
 }())
+
