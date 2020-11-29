@@ -89,6 +89,13 @@ io.on('connection', (client) => {
     client.emit('userList', allUsers);
   }
 
+  client.on('sendToGame', handleSend);
+  function handleSend(roomCode) {
+    io.to(roomCode).emit('startGame');
+  }
+
+
+
   console.log("A user connected: " + client.id);
 })
 
@@ -125,10 +132,16 @@ app.get('/join-GET', (req, res) => {
   }
 })
 
+app.get('/start-GET', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  let doc = fs.readFile(__dirname + "/game.html")
+  res.sendFile(doc);
+})
+
 
 
 app.use((req, res) => {
-  res.status(404).send("Nothing found, 404");
+  res.status(404).send("<h1>Nothing found, 404</h1>");
 })
 
 server.listen(8000, () => {

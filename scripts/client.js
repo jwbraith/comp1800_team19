@@ -6,6 +6,7 @@ socket.on('unknownRoom', handleUnknownRoom);
 socket.on('new arrival', handleNewArrival);
 socket.on('numClients', displayClientCount);
 socket.on('userList', handleUserList);
+socket.on('startGame', handleGameStart);
 
 
 // the goal with this jquery is to include info in server requests
@@ -119,6 +120,28 @@ function handleUserList(clients) {
   $('#playerList').replaceWith(listToPutInPlace);
 }
 
+function handleGameStart() {
+  setTimeout(function () {
+    console.log("handling game start");
+    $.ajax({
+      url: "/start-GET",
+      datatype: "html",
+      type: "GET",
+      data: {
+        entrance: "join",
+        entrant: socket.id,
+      },
+      success: function (data) {
+        console.log("game start: ", data);
+
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log("ERROR: ", jqXHR, textStatus, errorThrown);
+      }
+    })
+  }, 1000)
+
+}
 
 
 
