@@ -35,3 +35,11 @@ function updateUserProfileAuth(name) {
     })
     
 }
+
+module.exports = {
+  getFBDisplayName,
+} 
+
+function getFBDisplayName() {
+  return user.displayName;
+}
