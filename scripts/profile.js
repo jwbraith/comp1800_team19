@@ -6,6 +6,7 @@ window.onload = function (){
     }) 
 }
 
+
 function getName() {
     
     let x = document.getElementById("my-form").elements[0].value;
@@ -36,10 +37,4 @@ function updateUserProfileAuth(name) {
     
 }
 
-module.exports = {
-  getFBDisplayName,
-} 
 
-function getFBDisplayName() {
-  return user.displayName;
-}
