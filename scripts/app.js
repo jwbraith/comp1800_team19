@@ -43,7 +43,6 @@ let questionArray = [{
 ];
 
 let questionOrder = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
-let shuffledOrder = shuffle(questionOrder)
 
 
 function startGame() {
@@ -66,7 +65,7 @@ function setQuestion() {
 
   //for now! --> will have to change later if we expand on this project later!
 
-  db.collection("questions").doc(shuffledOrder[currentQuestionIndex])
+  db.collection("questions").doc(questionOrder[currentQuestionIndex])
     .onSnapshot(function (snap) {
       let option1 = snap.data().correct_answer;
       let option2 = snap.data().incorrect_answers[0];
@@ -85,7 +84,7 @@ function setQuestion() {
       btn4.innerText = shuffledQuestions[3];
 
       //sets up the question array so that a boolean value is associated with the choices. 
-      questionArray = setCorrect(shuffledOrder, currentQuestionIndex, shuffledQuestions, questionArray)
+      questionArray = setCorrect(questionOrder, currentQuestionIndex, shuffledQuestions, questionArray)
 
       //displays question
       questionElement.innerText = "Question " + (currentQuestionIndex + 1) + ": " + snap.data().question;
@@ -175,7 +174,7 @@ function setQuestion() {
     btn4.setAttribute('disabled', true)
     timeStopped = true;
 
-    if (currentQuestionIndex + 1 >= shuffledOrder.length) {
+    if (currentQuestionIndex + 1 >= questionOrder.length) {
       setTimeout(function () {
         finishGame()
       }, 3000)
