@@ -7,7 +7,7 @@ const io = require('socket.io')(server);
 const $ = require('jquery');
 const fs = require('fs');
 const { dirname } = require('path');
-const utilities = require('./scripts/utilities.js')
+const utilities = require('./scripts/utilities.js');
 
 const state = {};
 const clientRooms = {};
@@ -27,8 +27,9 @@ io.on('connection', (client) => {
     clientRooms[client.id] = roomName;
     console.log(clientRooms);
     client.join(roomName);
+    // client.displayName = profile.getFBDisplayName();
     client.number = 1;
-    console.log(client.id + " joined room " + clientRooms[client.id]);
+    console.log(client.displayName + " joined room " + clientRooms[client.id]);
   }
 
   client.on('joinRoom', handleJoinRoom);
@@ -103,6 +104,14 @@ io.on('connection', (client) => {
 
 //APP GETS
 app.get('/', (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+})
+
+app.get('/profile.html', (req, res) => {
+  res.sendFile(__dirname + "/profile.html");
+})
+
+app.get('/play_with.html', (req, res) => {
   res.sendFile(__dirname + "/play_with.html");
 })
 

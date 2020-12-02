@@ -113,7 +113,8 @@ function handleUserList(clients) {
   let listToPutInPlace = "";
   console.log(Object.keys(clients));
   for (let i = 0; i < list.length; i++) {
-    listToPutInPlace += "<li class='playerName'>" + list[i] + "</li>";
+    nameToDisplay = list[i]['displayName'];
+    listToPutInPlace += "<li class='playerName'>" + nameToDisplay + "</li>";
   };
   $('#playerList').replaceWith(listToPutInPlace);
 }

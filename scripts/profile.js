@@ -6,6 +6,7 @@ window.onload = function (){
     }) 
 }
 
+
 function getName() {
     
     let x = document.getElementById("my-form").elements[0].value;
@@ -35,3 +36,5 @@ function updateUserProfileAuth(name) {
     })
     
 }
+
+

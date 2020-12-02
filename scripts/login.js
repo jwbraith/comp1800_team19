@@ -46,7 +46,7 @@
             })
 
             setTimeout(function() {
-                window.location.href = "main.html"
+                window.location.href = "profile.html"
             }, 500)
         } else {
             console.log('not logged in')
