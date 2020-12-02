@@ -104,6 +104,14 @@ io.on('connection', (client) => {
 
 //APP GETS
 app.get('/', (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+})
+
+app.get('/profile.html', (req, res) => {
+  res.sendFile(__dirname + "/profile.html");
+})
+
+app.get('/play_with.html', (req, res) => {
   res.sendFile(__dirname + "/play_with.html");
 })
 
