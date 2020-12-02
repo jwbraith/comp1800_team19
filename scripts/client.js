@@ -151,17 +151,17 @@ function redirectJoinLobby() {
     window.location.replace('lobby.html')
   }, 2000);
 }
-// $(document).ready(function () {
-//   setInterval(function updatePlayerCount() {
-//     let roomCode = $('#roomCodeDisplay').text();
-//     socket.emit('reqPlayerCount', roomCode);
-//   }, 1000);
+$(document).ready(function () {
+  setInterval(function updatePlayerCount() {
+    let roomCode = $('#roomCodeDisplay').text();
+    socket.emit('reqPlayerCount', roomCode);
+  }, 1000);
 
-//   setInterval(function updatePlayerList() {
-//     let roomCode = $('#roomCodeDisplay').text();
-//     socket.emit('reqPlayerNames', roomCode);
-//   }, 2000);
-// })
+  setInterval(function updatePlayerList() {
+    let roomCode = $('#roomCodeDisplay').text();
+    socket.emit('reqPlayerNames', roomCode);
+  }, 2000);
+})
 
 
 
