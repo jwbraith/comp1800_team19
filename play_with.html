@@ -114,11 +114,15 @@
 
 
     <script>
-
-      var user = firebase.auth().currentUser;
-      if (user != null) {
-        console.log(user.displayName);
+      function getUsername() {
+        var user = firebase.auth().currentUser;
+        if (user != null) {
+          console.log(user.displayName);
+          socket.displayName = user.displayName;
+          console.log(socket.displayName);
+        }
       }
+      getUsername();
     </script>
     <script src="scripts/client.js"></script>
 
