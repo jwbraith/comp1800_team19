@@ -23,17 +23,18 @@ app.use('/images', express.static(__dirname + '/images'));
 io.on('connection', (client) => {
 
   client.on('newRoom', handleNewRoom);
-  function handleNewRoom() {
-    let roomName = utilities.createRoomCode();
-    clientRooms[client.id] = roomName;
+  function handleNewRoom(displayName) {
+    let roomCode = utilities.createRoomCode();
+    clientRooms[client.id] = roomCode;
+    clientNames[client.id] = displayName;
     console.log(clientRooms);
-    client.join(roomName);
+    client.join(roomCode);
     client.number = 1;
     console.log(client.id + " joined room " + clientRooms[client.id]);
   }
 
   client.on('joinRoom', handleJoinRoom);
-  function handleJoinRoom(roomCode) {
+  function handleJoinRoom(roomCode, displayName) {
     console.log(roomCode);
     let room = io.nsps['/'].adapter.rooms[roomCode];
     console.log(client.id + " tried to join " + room);
@@ -56,6 +57,8 @@ io.on('connection', (client) => {
     // pair this client.id key with the roomCode value in the 
     // clientRooms object
     clientRooms[client.id] = roomCode;
+    // pair this client id with the display name in the clientNames object
+    clientNames[client.id] = displayName;
     console.log("got to here");
     client.join(roomCode);
     client.to(roomCode).emit('new arrival', client.id);
@@ -77,6 +80,7 @@ io.on('connection', (client) => {
     client.emit('numClients', numClients);
   }
 
+  // RETURNING LIST OF PLAYER NAMES AS PULLED FROM CLIENTNAMES OBJECT
   client.on('reqPlayerNames', returnPlayerNames);
   function returnPlayerNames(roomCode) {
     let room = io.nsps['/'].adapter.rooms[roomCode];
@@ -87,8 +91,11 @@ io.on('connection', (client) => {
       allUsers = room.sockets;
     }
     
-    console.log(allUsers);
-    client.emit('userList', allUsers);
+    // console.log("Here's w/e allUsers is: " + allUsers);
+    // let listOfID = Object.keys(allUsers);
+    // console.log("here's the list of ids: " + listOfID);
+    console.log("I did call!");
+    io.to(roomCode).emit('userList', allUsers, clientNames);
   }
 
   // step 2 of game beginning when the server receives the sendToGame message from client
@@ -97,8 +104,6 @@ io.on('connection', (client) => {
 
   //step 2.5 of game start, takes the roomCode and fires off the startGame emission to that room as specified by roomCode
   function handleSend(roomCode) {
-    // let room = io.nsps['/'].adapter.rooms[roomCode];
-    console.log("handling send " + roomCode + " that was room code");
     io.to(roomCode).emit('startGame');
     console.log("after emissions");
   }

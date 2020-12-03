@@ -22,13 +22,11 @@ function handleJig(msg) {
 $(document).ready(function () {
   $('#createButton').on('click', function () {
     console.log('clicked create button');
-    // var user = firebase.auth().currentUser;
-    //     if (user != null) {
-    //       console.log(user.displayName);
-    //       socket.display = user.displayName;
-    //       console.log(socket.displayName);
-    //     }
-    socket.emit('newRoom');
+    var user = firebase.auth().currentUser;
+        if (user != null) {
+          display = user.displayName;
+        }
+    socket.emit('newRoom', display);
 
     $.ajax({
       url: "/create-GET",
@@ -44,7 +42,7 @@ $(document).ready(function () {
         let yourRoom = data['room'];
         $('#grid').html(data["lobbyHTML"]);
         $('#roomCodeDisplay').text(yourRoom);
-        $('#playerList').append('<li>' + socket.displayName + "</li>");
+        socket.emit('reqPlayerNames', yourRoom);
         $('#playerCount').text('Number of Players: ' + 1);
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -55,17 +53,15 @@ $(document).ready(function () {
 
   $('#joinButton').on('click', function () {
     console.log('clicked join button');
-    // var user = firebase.auth().currentUser;
-    //     if (user != null) {
-    //       console.log(user.displayName);
-    //       socket.display = user.displayName;
-    //       console.log(socket.displayName);
-    //     }
+    var user = firebase.auth().currentUser;
+        if (user != null) {
+          display = user.displayName;
+        }
 
     console.log("grabbing room code field " + $('#roomCodeField').val());
     let code = $('#roomCodeField').val();
     console.log(code);
-    socket.emit('joinRoom', code);
+    socket.emit('joinRoom', code, display);
     console.log("Tried to join room " + code);
     $.ajax({
       url: "/join-GET",
@@ -79,7 +75,7 @@ $(document).ready(function () {
         console.log("join-GET: ", data);
         $('#grid').html(data['lobbyHTML']);
         $('#roomCodeDisplay').text(data['room']);
-        $('#playerList').append('<li>' + socket.displayName + '</li>');
+        socket.emit('reqPlayerNames', roomCode);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("ERROR: ", jqXHR, textStatus, errorThrown);
@@ -96,8 +92,7 @@ function initGame() {
   let roomCode = $('#roomCodeDisplay').text();
   console.log("clicked ready button " + roomCode);
   socket.emit('sendToGame', roomCode);
-  clearInterval(count);
-  clearInterval(nameCalling);
+
 }
 
 
@@ -132,15 +127,16 @@ function displayClientCount(clients) {
   $('#playerCount').text('Number of Players: ' + clients);
 }
 
-function handleUserList(clients) {
-  console.log(clients);
+function handleUserList(clients, clientNames) {
+  console.log("STop calling");
   // console.log(clients[0]);
   let list = Object.keys(clients);
   let listToPutInPlace = "";
-  console.log(list);
+  $('#playerList').
+  console.log("here's the list of clients: " + list);
   for (let i = 0; i < list.length; i++) {
-    nameToDisplay = list[i];
-    listToPutInPlace += "<li class='playerName'>" + nameToDisplay + "</li>";
+    nameToDisplay = clientNames[list[i]];
+    listToPutInPlace += "<li id='playerName'>" + nameToDisplay + "</li>";
   };
   $('#playerList').replaceWith(listToPutInPlace);
 }
@@ -174,7 +170,7 @@ function handleGameStart() {
 }
 
 
-$(document).ready(function () {
+// $(document).ready(function () {
   count = setInterval(function updatePlayerCount() {
     let roomCode = $('#roomCodeDisplay').text();
     socket.emit('reqPlayerCount', roomCode);
@@ -182,9 +178,10 @@ $(document).ready(function () {
 
   nameCalling = setInterval(function updatePlayerList() {
     let roomCode = $('#roomCodeDisplay').text();
+    console.log("You called?");
     socket.emit('reqPlayerNames', roomCode);
   }, 2000);
-})
+// })
 
 
 
