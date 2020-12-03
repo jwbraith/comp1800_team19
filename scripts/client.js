@@ -75,7 +75,7 @@ $(document).ready(function () {
         console.log("join-GET: ", data);
         $('#grid').html(data['lobbyHTML']);
         $('#roomCodeDisplay').text(data['room']);
-        socket.emit('reqPlayerNames', roomCode);
+        socket.emit('reqPlayerNames', code);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("ERROR: ", jqXHR, textStatus, errorThrown);
@@ -111,12 +111,14 @@ function joinRoom() {
   // redirectJoinLobby();
 }
 
-function handleNewArrival(arrival) {
+function handleNewArrival(arrival, arrivingName) {
   console.log("Look who's joined, it's " + arrival);
+  $("#playerList").append("<li class='name' id='player'>" + arrivingName + "</li>");
 }
 
 function handleUnknownRoom(room) {
   console.log("Could not find a room " + room);
+  
 }
 
 function handleRoomCode(roomCode) {
@@ -128,17 +130,23 @@ function displayClientCount(clients) {
 }
 
 function handleUserList(clients, clientNames) {
-  console.log("STop calling");
   // console.log(clients[0]);
   let list = Object.keys(clients);
   let listToPutInPlace = "";
-  $('#playerList').
+  console.log("Number of names to display: " + list.length);
+  
   console.log("here's the list of clients: " + list);
   for (let i = 0; i < list.length; i++) {
-    nameToDisplay = clientNames[list[i]];
-    listToPutInPlace += "<li id='playerName'>" + nameToDisplay + "</li>";
+    
+    listToPutInPlace += "<li class='name' id='player" + i + "'></li>";
   };
-  $('#playerList').replaceWith(listToPutInPlace);
+  $('#playerList').contents("ul").replaceWith(listToPutInPlace);
+  for (let i = 0; i < list.length; i++) {
+    nameToDisplay = clientNames[list[i]];
+    $('.name').each(function () {
+      this.innerText = nameToDisplay;
+    })
+  }
 }
 
 //fourth step of starting a game, function waits a second

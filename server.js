@@ -61,7 +61,7 @@ io.on('connection', (client) => {
     clientNames[client.id] = displayName;
     console.log("got to here");
     client.join(roomCode);
-    client.to(roomCode).emit('new arrival', client.id);
+    client.to(roomCode).emit('new arrival', client.id, clientNames[client.id]);
     client.number = 2;
   }
 
