@@ -1,24 +1,33 @@
 const socket = io();
 //this bit displays the room code in lobby.html
 const roomCodeDisplay = document.getElementById("roomCodeDisplay");
+let headCount;
+let nameCalling;
 socket.on('roomCode', handleRoomCode);
 socket.on('unknownRoom', handleUnknownRoom);
 socket.on('new arrival', handleNewArrival);
 socket.on('numClients', displayClientCount);
 socket.on('userList', handleUserList);
+
+//3rd step of starting game, when client receives message the handleGameStart function is called
 socket.on('startGame', handleGameStart);
 
+
+function handleJig(msg) {
+  console.log(msg);
+}
 
 // the goal with this jquery is to include info in server requests
 // that indicate whether we are creating or joining a room
 $(document).ready(function () {
   $('#createButton').on('click', function () {
     console.log('clicked create button');
-    socket.emit('newRoom');
-  })
+    var user = firebase.auth().currentUser;
+        if (user != null) {
+          display = user.displayName;
+        }
+    socket.emit('newRoom', display);
 
-  $('#createButton').on('click', function () {
-    console.log('clicked create button');
     $.ajax({
       url: "/create-GET",
       datatype: "json",
@@ -28,13 +37,12 @@ $(document).ready(function () {
         creator: socket.id,
       },
       success: function (data) {
-        console.log(data['room']);
-        let yourID = socket.id;
-        console.log(yourID);
+        console.log("room data: " + data['room']);
+
         let yourRoom = data['room'];
         $('#grid').html(data["lobbyHTML"]);
         $('#roomCodeDisplay').text(yourRoom);
-        $('#playerList').append('<li>' + socket.id + "</li>");
+        socket.emit('reqPlayerNames', yourRoom);
         $('#playerCount').text('Number of Players: ' + 1);
       },
       error: function (jqXHR, textStatus, errorThrown) {
@@ -45,10 +53,15 @@ $(document).ready(function () {
 
   $('#joinButton').on('click', function () {
     console.log('clicked join button');
-    console.log($('#roomCodeField').val());
+    var user = firebase.auth().currentUser;
+        if (user != null) {
+          display = user.displayName;
+        }
+
+    console.log("grabbing room code field " + $('#roomCodeField').val());
     let code = $('#roomCodeField').val();
     console.log(code);
-    socket.emit('joinRoom', code);
+    socket.emit('joinRoom', code, display);
     console.log("Tried to join room " + code);
     $.ajax({
       url: "/join-GET",
@@ -62,7 +75,7 @@ $(document).ready(function () {
         console.log("join-GET: ", data);
         $('#grid').html(data['lobbyHTML']);
         $('#roomCodeDisplay').text(data['room']);
-        $('#playerList').append('<li>' + socket.id + '</li>');
+        socket.emit('reqPlayerNames', code);
       },
       error: function (jqXHR, textStatus, errorThrown) {
         console.log("ERROR: ", jqXHR, textStatus, errorThrown);
@@ -70,13 +83,19 @@ $(document).ready(function () {
     })
   })
 
+  
 })
 
+// the first step of beginning the game,
+// onClick of ready button
 function initGame() {
   let roomCode = $('#roomCodeDisplay').text();
-  console.log("clicked ready button");
+  console.log("clicked ready button " + roomCode);
   socket.emit('sendToGame', roomCode);
+
 }
+
+
 const roomCodeField = document.getElementById("roomCodeField");
 
 
@@ -92,12 +111,14 @@ function joinRoom() {
   // redirectJoinLobby();
 }
 
-function handleNewArrival(arrival) {
+function handleNewArrival(arrival, arrivingName) {
   console.log("Look who's joined, it's " + arrival);
+  $("#playerList").append("<li class='name' id='player'>" + arrivingName + "</li>");
 }
 
 function handleUnknownRoom(room) {
   console.log("Could not find a room " + room);
+  
 }
 
 function handleRoomCode(roomCode) {
@@ -108,18 +129,31 @@ function displayClientCount(clients) {
   $('#playerCount').text('Number of Players: ' + clients);
 }
 
-function handleUserList(clients) {
+function handleUserList(clients, clientNames) {
+  // console.log(clients[0]);
   let list = Object.keys(clients);
   let listToPutInPlace = "";
-  console.log(Object.keys(clients));
+  console.log("Number of names to display: " + list.length);
+  
+  console.log("here's the list of clients: " + list);
   for (let i = 0; i < list.length; i++) {
-    nameToDisplay = list[i]['displayName'];
-    listToPutInPlace += "<li class='playerName'>" + nameToDisplay + "</li>";
+    
+    listToPutInPlace += "<li class='name' id='player" + i + "'></li>";
   };
-  $('#playerList').replaceWith(listToPutInPlace);
+  $('#playerList').contents("ul").replaceWith(listToPutInPlace);
+  for (let i = 0; i < list.length; i++) {
+    nameToDisplay = clientNames[list[i]];
+    $('.name').each(function () {
+      this.innerText = nameToDisplay;
+    })
+  }
 }
 
+//fourth step of starting a game, function waits a second
+// and then makes an ajax call to the server to retrieve the game body html
 function handleGameStart() {
+  
+  console.log("handling game start");
   setTimeout(function () {
     console.log("handling game start");
     $.ajax({
@@ -144,25 +178,18 @@ function handleGameStart() {
 }
 
 
-
-
-function redirectJoinLobby() {
-  console.log("redirect function called");
-  setTimeout(() => {
-    window.location.replace('lobby.html')
-  }, 2000);
-}
-$(document).ready(function () {
-  setInterval(function updatePlayerCount() {
+// $(document).ready(function () {
+  count = setInterval(function updatePlayerCount() {
     let roomCode = $('#roomCodeDisplay').text();
     socket.emit('reqPlayerCount', roomCode);
   }, 1000);
 
-  setInterval(function updatePlayerList() {
+  nameCalling = setInterval(function updatePlayerList() {
     let roomCode = $('#roomCodeDisplay').text();
+    console.log("You called?");
     socket.emit('reqPlayerNames', roomCode);
   }, 2000);
-})
+// })
 
 
 

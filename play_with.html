@@ -103,21 +103,9 @@
   </script>
 
   <!-- socket.io script -->
-  <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
-
-  <script>
-    function getUsername() {
-      var user = firebase.auth().currentUser;
-      if (user != null) {
-        console.log(user.displayName);
-        socket.displayName = user.displayName;
-        console.log(socket.displayName);
-      }
-    }
-    getUsername();
-  </script>
-  <script src="scripts/client.js"></script>
+    <script src="scripts/client.js"></script>
 
 
 </body>
