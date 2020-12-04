@@ -215,7 +215,7 @@ function setQuestion() {
       })
     })
     lobbyButton.onclick = function () {
-      window.location.href = "lobby.html"
+      window.location.href = "play_with.html"
     }
     mainPageButton.onclick = function () {
       window.location.href = "profile.html"

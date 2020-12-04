@@ -27,7 +27,7 @@ io.on('connection', (client) => {
     let roomCode = utilities.createRoomCode();
     clientRooms[client.id] = roomCode;
     clientNames[client.id] = displayName;
-    console.log(clientRooms);
+    console.log(clientNames);
     client.join(roomCode);
     client.number = 1;
     console.log(client.id + " joined room " + clientRooms[client.id]);
@@ -45,7 +45,7 @@ io.on('connection', (client) => {
     } else {
       console.log("room was false");
     }
-    console.log(allUsers);
+    console.log(clientNames);
     let numClients = 0;
     if (allUsers) {
       numClients = Object.keys(allUsers).length;
@@ -87,14 +87,14 @@ io.on('connection', (client) => {
     let allUsers;
     // let names = [];
     if (room) {
-      console.log(room);
+      // console.log(room);
       allUsers = room.sockets;
     }
     
     // console.log("Here's w/e allUsers is: " + allUsers);
     // let listOfID = Object.keys(allUsers);
     // console.log("here's the list of ids: " + listOfID);
-    console.log("I did call!");
+    // console.log("I did call!");
     io.to(roomCode).emit('userList', allUsers, clientNames);
   }
 
