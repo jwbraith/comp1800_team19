@@ -5,10 +5,8 @@
 
 body {
   background-color: #EEEBD0;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .index-options {
@@ -143,16 +141,16 @@ a:hover {
 
 
 .bg-primary {
-  background-color: #118ab2 !important;
+  background-color: #EBB3A9 !important;
 }
 
 .bg-warning {
-  background-color: #06d6a0 !important;
+  background-color: #EBB3A9 !important;
 }
 
 .btn-warning {
-  background-color: #06d6a0 !important;
-  border-color: #06d6a0 !important;
+  background-color: #EBB3A9 !important;
+  border-color: #EBB3A9 !important;
 }
 
 #counter-container {
@@ -295,7 +293,7 @@ a:hover {
   font-size: 2em;
   text-align: center;
   margin-top: 10vh;
-} 
+}
 
 #score-results {
   background-color: #EBB3A9;
@@ -315,6 +313,72 @@ a:hover {
   margin-top: 5vh;
 }
 
+#createButton,
+  #joinButton {
+    align-self: center;
+    justify-self: center;
+    height: 10vh;
+    width: 40vw;
+    font-size: 2em;
+    line-height: 100%;
+    background-color: #EBB3A9;
+    border-color: #E87EA1;
+    color: #242424;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+
+  #createRoomField {
+    text-align: center;
+  }
+
+  #readyButton {
+    width: 200px;
+    height: 75px;
+    margin-bottom: 50px;
+    margin-top: 0px;
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #playersGrid {
+    width: 60vw;
+    text-align: center;
+    height: 30vh;
+    font-size: 1.5em;
+    padding-top: 20px;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -50px;
+    box-shadow: 3px 3px #a0a0a0;
+  }
+
+  #roomCodeTitle {
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  #roomCodePrompt {
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  #joinRoomField {
+    text-align: center;
+  }
+
+  #grid {
+    margin-top: 100px;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr 1fr 1fr 1fr;
+
+  }
+  
 
 @media screen and (max-width: 700px) {
   .btn {
@@ -357,4 +421,40 @@ a:hover {
     height: 0.8em;
 
   }
+
+  #createButton,
+  #joinButton {
+    align-self: center;
+    justify-self: center;
+    height: 10vh;
+    width: 200px;
+    font-size: 20pt;
+    line-height: 100%;
+    background-color: #EBB3A9;
+    border-color: #E87EA1;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  #playersGrid {
+    width: 70vw;
+    text-align: center;
+    height: 30vh;
+    font-size: 1em;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -50px;
+    box-shadow: 3px 3px #a0a0a0;
+  }
+
+  #grid {
+    margin-top: 50px;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr 1fr 1fr 1fr;
+
+  }
+
 }
