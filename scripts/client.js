@@ -133,9 +133,8 @@ function handleUserList(clients, clientNames) {
   // console.log(clients[0]);
   let list = Object.keys(clients);
   let listToPutInPlace = "";
-  console.log("Number of names to display: " + list.length);
-  
-  console.log("here's the list of clients: " + list);
+  // console.log("Number of names to display: " + list.length);
+  // console.log("here's the list of clients: " + list);
   for (let i = 0; i < list.length; i++) {
     
     listToPutInPlace += "<li class='name' id='player" + i + "'></li>";
@@ -155,7 +154,6 @@ function handleGameStart() {
   
   console.log("handling game start");
   setTimeout(function () {
-    console.log("handling game start");
     $.ajax({
       url: "/start-GET",
       datatype: "html",
