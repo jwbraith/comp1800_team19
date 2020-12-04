@@ -123,6 +123,10 @@ app.get('/profile.html', (req, res) => {
   res.sendFile(__dirname + "/profile.html");
 })
 
+app.get('/index.html', (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+})
+
 app.get('/play_with.html', (req, res) => {
   res.sendFile(__dirname + "/play_with.html");
 })
